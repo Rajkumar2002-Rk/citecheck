@@ -1,0 +1,32 @@
+name: ci
+
+# Runs on every push. Costs nothing and needs no secrets: the corpus text, the
+# saved extractions and the hand labels are all committed, so the gates and the
+# report are fully reproducible offline.
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v5
+        with:
+          enable-cache: true
+
+      - name: Sync dependencies
+        run: uv sync --frozen
+
+      - name: Run tests
+        run: uv run pytest -q
+
+      - name: Gate the defect report
+        # Fails the build if citation integrity on the committed run drops below
+        # the threshold -- which happens if a gate regresses, not just if the
+        # model does.
+        run: uv run python -m citecheck.cli report --mode quote --fail-under 0.90

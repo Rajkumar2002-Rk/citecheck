@@ -1,0 +1,40 @@
+name: drift
+
+# Weekly re-extraction against the hand-labeled ground truth. This is the only
+# job that calls the model, so it is the only one that costs money: five
+# filings in quote mode, a few cents a run.
+#
+# It exists to catch things the offline tests cannot -- the model's behaviour
+# changing under the same prompt, or a prompt edit quietly regressing quality.
+on:
+  schedule:
+    - cron: "0 7 * * 1"   # Mondays 07:00 UTC
+  workflow_dispatch:
+    inputs:
+      sample:
+        description: Filings to re-extract
+        default: "5"
+
+jobs:
+  drift:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v5
+        with:
+          enable-cache: true
+
+      - name: Sync dependencies
+        run: uv sync --frozen
+
+      - name: Re-extract and compare against labels
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          uv run python -m citecheck.cli drift \
+            --sample "${{ github.event.inputs.sample || 5 }}" \
+            --mode quote \
+            --min-integrity 0.90 \
+            --max-claim-errors 2

@@ -246,5 +246,70 @@ def label(index: int = typer.Argument(None, help="Filing number; omit for the ne
     console.print(f"[green]saved[/] filing {index} -- {done + 1}/{len(rows)} labeled")
 
 
+@app.command()
+def drift(
+    sample: int = typer.Option(5, help="Filings to re-extract, taken in manifest order."),
+    mode: str = typer.Option("quote", help="Citation mode: quote or span."),
+    min_integrity: float = typer.Option(0.90, help="Minimum citation integrity."),
+    max_claim_errors: int = typer.Option(2, help="Maximum filings with a wrong claim."),
+):
+    """Re-extract a sample and compare against the committed labels.
+
+    This is the only command that spends money. It exists to catch drift: the
+    model changing behaviour, a prompt edit regressing quality, or a gate that
+    silently stopped firing. The corpus text and the labels are committed, so
+    this needs no network access to EDGAR.
+    """
+    import anthropic
+
+    from .extract import extract
+    from .gates import run_gates
+    from .labels import diff, load_labels
+    from .report import MODELS
+
+    labels = load_labels()
+    if not labels:
+        console.print("[red]no labels found[/] -- run `label` first")
+        raise typer.Exit(code=EXIT_NO_DATA)
+
+    filings = json.loads((corpus.DATA / "manifest.json").read_text())["filings"][:sample]
+    client = anthropic.Anthropic()
+
+    fields = bad = claim_errors = 0
+    table = Table("filing", "fields", "citation findings", "wrong claims")
+    for filing in filings:
+        text = (corpus.TEXT / filing["text_file"]).read_text(encoding="utf-8")
+        attempt = extract(client, text, mode=mode)
+        if attempt.parsed is None:
+            console.print(f"[red]extraction failed[/] {filing['company'][:40]}: {attempt.error}")
+            raise typer.Exit(code=EXIT_NO_DATA)
+
+        result = run_gates(attempt.parsed, text, mode=mode)
+        record = MODELS[mode].model_validate(attempt.parsed.model_dump(mode="json"))
+        mismatches = diff(record, labels.get(filing["text_file"], {}))
+
+        fields += 4 + 2 * len(attempt.parsed.material_weaknesses)
+        bad += len(result.findings)
+        claim_errors += 1 if mismatches else 0
+        table.add_row(filing["company"].split("(")[0].strip()[:30],
+                      str(4 + 2 * len(attempt.parsed.material_weaknesses)),
+                      str(len(result.findings)),
+                      ", ".join(m.field for m in mismatches) or "-")
+
+    console.print(table)
+    integrity = 1 - (bad / fields) if fields else 0.0
+    console.print(f"citation integrity {integrity:.1%} | filings with a wrong claim "
+                  f"{claim_errors}/{len(filings)}")
+
+    failed = []
+    if integrity < min_integrity:
+        failed.append(f"citation integrity {integrity:.1%} < {min_integrity:.1%}")
+    if claim_errors > max_claim_errors:
+        failed.append(f"{claim_errors} filings with wrong claims > {max_claim_errors}")
+    for reason in failed:
+        console.print(f"[red]FAIL[/] {reason}")
+    raise typer.Exit(code=EXIT_BELOW_THRESHOLD if failed else EXIT_OK)
+
+
 if __name__ == "__main__":
     app()
