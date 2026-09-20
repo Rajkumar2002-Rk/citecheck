@@ -13,3 +13,6 @@ wheels/
 data/raw/
 .env
 .DS_Store
+data/pool.json
+data/diagnostic.json
+data/.*.lock

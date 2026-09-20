@@ -1,5 +1,8 @@
 from __future__ import annotations
 
+import os
+from pathlib import Path
+
 import json
 
 import typer
@@ -309,6 +312,95 @@ def drift(
     for reason in failed:
         console.print(f"[red]FAIL[/] {reason}")
     raise typer.Exit(code=EXIT_BELOW_THRESHOLD if failed else EXIT_OK)
+
+
+@app.command("extract")
+def extract_all(
+    mode: str = typer.Option("quote", help="Citation mode: quote or span."),
+    prompt: int = typer.Option(1, help="Prompt version: 1 baseline, 2 adds the remediation rule."),
+    out: Path = typer.Option(None, help="Output JSONL. Defaults to data/<mode>_v<prompt>.jsonl."),
+    repair: int = typer.Option(0, help="Extra attempts on gate failure, feeding the findings back."),
+    limit: int = typer.Option(0, help="Stop after N filings. 0 means all."),
+):
+    """Extract every filing, verify it, and write one JSON record per filing.
+
+    Resumable: filings already present in the output file are skipped, so an
+    interrupted run costs nothing to continue. A single run is enforced with a
+    lockfile, because two processes writing the same file silently interleaved
+    an entire pass once.
+    """
+    import anthropic
+
+    from .extract import extract as extract_one
+    from .gates import run_gates
+
+    if mode not in ("span", "quote"):
+        console.print(f"[red]unknown mode {mode!r}[/]")
+        raise typer.Exit(code=EXIT_USAGE)
+
+    out = out or corpus.DATA / f"{mode}_v{prompt}.jsonl"
+    lock = corpus.DATA / f".{out.stem}.lock"
+    if lock.exists():
+        try:
+            os.kill(int(lock.read_text().strip()), 0)
+            console.print(f"[red]a run is already active[/] (pid {lock.read_text().strip()})")
+            raise typer.Exit(code=EXIT_USAGE)
+        except (ProcessLookupError, ValueError):
+            pass
+    lock.write_text(str(os.getpid()))
+
+    try:
+        done = set()
+        if out.exists():
+            done = {json.loads(line)["text_file"] for line in out.read_text().splitlines()
+                    if line.strip() and "extraction" in json.loads(line)}
+        if done:
+            console.print(f"[dim]resuming: {len(done)} filings already done[/]")
+
+        filings = json.loads((corpus.DATA / "manifest.json").read_text())["filings"]
+        if limit:
+            filings = filings[:limit]
+        client = anthropic.Anthropic()
+
+        with out.open("a") as handle:
+            for index, filing in enumerate(filings, 1):
+                if filing["text_file"] in done:
+                    continue
+                text = (corpus.TEXT / filing["text_file"]).read_text(encoding="utf-8")
+
+                feedback, attempt, result = None, None, None
+                for _ in range(repair + 1):
+                    attempt = extract_one(client, text, mode=mode, version=prompt,
+                                          repair=feedback)
+                    if attempt.parsed is None:
+                        break
+                    result = run_gates(attempt.parsed, text, mode=mode)
+                    if result.passed:
+                        break
+                    feedback = result.repair_prompt()
+
+                record = {"company": filing["company"], "text_file": filing["text_file"],
+                          "length": filing["length"], "error": attempt.error,
+                          "stop": attempt.stop_reason, "in": attempt.input_tokens,
+                          "out": attempt.output_tokens, "sec": round(attempt.seconds, 1)}
+                if attempt.error and "credit balance" in attempt.error:
+                    # Every later call fails identically; writing 20 more error
+                    # records helps nobody.
+                    console.print("[red]stopping: account is out of credits[/]")
+                    break
+                if attempt.parsed is not None:
+                    record["extraction"] = attempt.parsed.model_dump(mode="json")
+                    record["findings"] = [f.as_dict() for f in result.findings]
+                    record["passed"] = result.passed
+
+                handle.write(json.dumps(record) + "\n")
+                handle.flush()
+                tag = "FAILED" if attempt.parsed is None else f"findings={len(record['findings'])}"
+                console.print(f"[dim][{index}/{len(filings)}][/] "
+                              f"{filing['company'].split('(')[0].strip()[:30]:32} {tag}")
+        console.print(f"[green]done[/] -> {out}")
+    finally:
+        lock.unlink(missing_ok=True)
 
 
 if __name__ == "__main__":
