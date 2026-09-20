@@ -1,0 +1,771 @@
+[
+ {
+  "company": "ALTA EQUIPMENT GROUP INC.  (ALTG, ALTG-PA)  (CIK 0001759824)",
+  "text_file": "0001759824_000095017023007039.txt",
+  "extraction": {
+   "disclosure_controls_effective": {
+    "value": false,
+    "citation": {
+     "quote": "our Chief Executive Officer and Chief Financial Officer concluded that our disclosure controls and procedures were not effective as of December 31, 2022 because of the material weakness in internal control over financial reporting described below"
+    }
+   },
+   "icfr_effective": {
+    "value": false,
+    "citation": {
+     "quote": "Based on this evaluation, management determined, based on the existence of the material weakness described below, that we did not maintain effective internal control over financial reporting."
+    }
+   },
+   "material_weaknesses": [
+    {
+     "description": {
+      "value": "Ineffective controls over the sales process, including proper review and authorization of pricing and discounts, work orders, sales agreements, and rental contracts.",
+      "citation": {
+       "quote": "we did not maintain effective controls over the sales process, including proper review and authorization of pricing and discounts, work orders, sales agreements, and rental contracts, which in the aggregate constitutes a material weakness"
+      }
+     },
+     "remediation_status": {
+      "value": "IN_PROGRESS",
+      "citation": {
+       "quote": "During 2022, we made progress towards remediation of this material weakness as we have enhanced and expanded our policies and procedures over the performance of controls around the sales process"
+      }
+     }
+    },
+    {
+     "description": {
+      "value": "Ineffective ITGCs in the areas of user access and segregation of duties over certain IT systems supporting financial reporting, with dependent business process controls also deemed ineffective.",
+      "citation": {
+       "quote": "There were ineffective ITGCs in the areas of user access and segregation of duties over certain information technology (IT) systems that support the Company's financial reporting processes."
+      }
+     },
+     "remediation_status": {
+      "value": "REMEDIATED",
+      "citation": {
+       "quote": "The following are material weaknesses that were previously disclosed in our Annual Report on Form 10-K for the year ended December 31, 2021 and have been remediated as of December 31, 2022:"
+      }
+     }
+    },
+    {
+     "description": {
+      "value": "Ineffective controls in the aggregate over parts inventory, including cycle counts, receiving controls, and monitoring of adjustments to inventory.",
+      "citation": {
+       "quote": "There were ineffective controls in the aggregate over parts inventory, including cycle counts, receiving controls, and monitoring of adjustments to inventory."
+      }
+     },
+     "remediation_status": {
+      "value": "REMEDIATED",
+      "citation": {
+       "quote": "consider these material weaknesses identified in the prior year to be remediated as of December 31, 2022"
+      }
+     }
+    }
+   ],
+   "control_framework": {
+    "value": "COSO_2013",
+    "citation": {
+     "quote": "based on the criteria established in the Internal Control - Integrated Framework (2013) issued by the Committee of Sponsoring Organizations of the Treadway Commission (COSO)"
+    }
+   },
+   "auditor_name": {
+    "value": "Deloitte & Touche LLP",
+    "citation": {
+     "quote": "The Company's independent registered public accounting firm, Deloitte & Touche LLP, who audited the consolidated financial statements as of and for the year ended December 31, 2022 included in this Annual Report on Form 10-K issued an adverse opinion on the effectiveness of the Company's internal control over financial reporting."
+    }
+   },
+   "auditor_opinion": {
+    "value": "ADVERSE",
+    "citation": {
+     "quote": "In our opinion, because of the effect of the material weakness identified below on the achievement of the objectives of the control criteria, the Company has not maintained effective internal control over financial reporting as of December 31, 2022"
+    }
+   }
+  },
+  "findings": [
+   {
+    "gate": "support_check",
+    "field": "material_weaknesses[0].remediation_status",
+    "defect": "B_UNSUPPORTED",
+    "message": "span does not support remediation status IN_PROGRESS",
+    "span": [
+     7457,
+     7651
+    ]
+   },
+   {
+    "gate": "support_check",
+    "field": "material_weaknesses[1].description",
+    "defect": "B_UNSUPPORTED",
+    "message": "material weakness description cites text that never mentions a material weakness",
+    "span": [
+     2119,
+     2308
+    ]
+   },
+   {
+    "gate": "support_check",
+    "field": "material_weaknesses[2].description",
+    "defect": "B_UNSUPPORTED",
+    "message": "material weakness description cites text that never mentions a material weakness",
+    "span": [
+     2483,
+     2641
+    ]
+   },
+   {
+    "gate": "support_check",
+    "field": "auditor_opinion",
+    "defect": "B_UNSUPPORTED",
+    "message": "span does not support auditor opinion ADVERSE",
+    "span": [
+     9496,
+     9744
+    ]
+   }
+  ]
+ },
+ {
+  "company": "World Gold Trust  (GLDM)  (CIK 0001618181)",
+  "text_file": "0001618181_000143774923032877.txt",
+  "extraction": {
+   "disclosure_controls_effective": {
+    "value": true,
+    "citation": {
+     "quote": "concluded that, as of September 30, 2023, the Trust's disclosure controls and procedures were effective"
+    }
+   },
+   "icfr_effective": {
+    "value": true,
+    "citation": {
+     "quote": "concluded that the Trust and GLDM maintained effective internal control over financial reporting as of September 30, 2023"
+    }
+   },
+   "material_weaknesses": [],
+   "control_framework": {
+    "value": "COSO_2013",
+    "citation": {
+     "quote": "they used the criteria set forth by the Committee of Sponsoring Organizations of the Treadway Commission (COSO) in Internal Control-Integrated Framework (2013)"
+    }
+   },
+   "auditor_name": {
+    "value": "KPMG LLP",
+    "citation": {
+     "quote": "KPMG LLP, the independent registered public accounting firm that audited and reported on the financial statements as of and for the year ended September 30, 2023"
+    }
+   },
+   "auditor_opinion": {
+    "value": "UNQUALIFIED",
+    "citation": {
+     "quote": "In our opinion, the Trust and the Fund maintained, in all material respects, effective internal control over financial reporting as of September 30, 2023"
+    }
+   }
+  },
+  "findings": [
+   {
+    "gate": "support_check",
+    "field": "icfr_effective",
+    "defect": "B_UNSUPPORTED",
+    "message": "span does not state that ICFR was effective",
+    "span": [
+     3993,
+     4114
+    ]
+   },
+   {
+    "gate": "support_check",
+    "field": "auditor_opinion",
+    "defect": "B_UNSUPPORTED",
+    "message": "span does not support auditor opinion UNQUALIFIED",
+    "span": [
+     5158,
+     5311
+    ]
+   }
+  ]
+ },
+ {
+  "company": "SkyWater Technology, Inc  (SKYT)  (CIK 0001819974)",
+  "text_file": "0001819974_000181997425000010.txt",
+  "extraction": {
+   "disclosure_controls_effective": {
+    "value": false,
+    "citation": {
+     "quote": "our Chief Executive Officer and Chief Financial Officer have concluded that, as of December 29, 2024, our disclosure controls and procedures were not effective because of the material weakness in internal control over financial reporting described below"
+    }
+   },
+   "icfr_effective": {
+    "value": false,
+    "citation": {
+     "quote": "management concluded, based upon the existence of the material weakness in the revenue\n107\n\naccounting process described above and below, that we did not maintain effective internal control over financial reporting as of December 29, 2024"
+    }
+   },
+   "material_weaknesses": [
+    {
+     "description": {
+      "value": "Material weakness in the revenue accounting process: an inappropriate level of privileged access to the Company's manufacturing application and its databases used in the revenue accounting process remains; IT general controls were not sufficient in design over provisioning/deprovisioning and monitoring of privileged user access, rendering IT-dependent manual revenue controls ineffective.",
+      "citation": {
+       "quote": "an inappropriate level of privileged access to the Company's manufacturing application and its databases used in the revenue accounting process remains. IT general controls were not sufficient in design as the Company did not maintain controls over the provisioning and deprovisioning of privileged user access or the monitoring of that access."
+      }
+     },
+     "remediation_status": {
+      "value": "IN_PROGRESS",
+      "citation": {
+       "quote": "remediation of the material weakness in the revenue accounting process will require further remediation efforts in fiscal year 2025"
+      }
+     }
+    },
+    {
+     "description": {
+      "value": "Previously disclosed material weakness in the Control Activities component of the COSO framework",
+      "citation": {
+       "quote": "we identified a material weakness in the Control Activities component of the COSO framework and a material weakness in the revenue accounting process"
+      }
+     },
+     "remediation_status": {
+      "value": "REMEDIATED",
+      "citation": {
+       "quote": "we were able to remediate the previously identified material weakness in the Control Activities component of the COSO framework as of December 29, 2024"
+      }
+     }
+    }
+   ],
+   "control_framework": {
+    "value": "COSO_2013",
+    "citation": {
+     "quote": "based on the criteria established in Internal Control -- Integrated Framework (2013) issued by the Committee of Sponsoring Organizations of the Treadway Commission"
+    }
+   },
+   "auditor_name": null,
+   "auditor_opinion": {
+    "value": "NOT_REQUIRED",
+    "citation": {
+     "quote": "Our independent registered public accounting firm is not required to report on the effectiveness of our internal control over financial reporting pursuant to Section 404 of the Sarbanes-Oxley Act of 2002"
+    }
+   }
+  },
+  "findings": [
+   {
+    "gate": "support_check",
+    "field": "material_weaknesses[0].description",
+    "defect": "B_UNSUPPORTED",
+    "message": "material weakness description cites text that never mentions a material weakness",
+    "span": [
+     3502,
+     3846
+    ]
+   },
+   {
+    "gate": "support_check",
+    "field": "material_weaknesses[0].remediation_status",
+    "defect": "B_UNSUPPORTED",
+    "message": "span does not support remediation status IN_PROGRESS",
+    "span": [
+     4458,
+     4589
+    ]
+   },
+   {
+    "gate": "support_check",
+    "field": "material_weaknesses[1].remediation_status",
+    "defect": "B_UNSUPPORTED",
+    "message": "span does not support remediation status REMEDIATED",
+    "span": [
+     2912,
+     3063
+    ]
+   },
+   {
+    "gate": "support_check",
+    "field": "auditor_opinion",
+    "defect": "B_UNSUPPORTED",
+    "message": "span does not support auditor opinion NOT_REQUIRED",
+    "span": [
+     7161,
+     7364
+    ]
+   }
+  ]
+ },
+ {
+  "company": "Empire State Realty Trust, Inc.  (ESRT)  (CIK 0001541401)",
+  "text_file": "0001541401_000154140125000003.txt",
+  "extraction": {
+   "disclosure_controls_effective": {
+    "value": true,
+    "citation": {
+     "quote": "our Chief Executive Officer and our Chief Financial Officer concluded, as of that time, that our disclosure controls and procedures were effective"
+    }
+   },
+   "icfr_effective": {
+    "value": true,
+    "citation": {
+     "quote": "our management concluded that our internal control over financial reporting was effective as of December 31, 2024"
+    }
+   },
+   "material_weaknesses": [
+    {
+     "description": {
+      "value": "Material weakness in the design of certain IT general controls (\"ITGCs\"), previously reported in the 2023 Annual Report on Form 10-K/A",
+      "citation": {
+       "quote": "As previously reported in our 2023 Annual Report on Form 10-K/A, management identified a material weakness in the design of certain IT general controls (\"ITGCs\")."
+      }
+     },
+     "remediation_status": {
+      "value": "REMEDIATED",
+      "citation": {
+       "quote": "management has concluded, through its testing, that the controls were operating effectively and the material weakness was remediated as of December 31, 2024"
+      }
+     }
+    }
+   ],
+   "control_framework": {
+    "value": "COSO_2013",
+    "citation": {
+     "quote": "we used the criteria set forth in the framework in Internal Control-Integrated Framework (2013) issued by the Committee of Sponsoring Organizations of the Treadway Commission (the \"COSO criteria\")"
+    }
+   },
+   "auditor_name": {
+    "value": "Ernst & Young LLP",
+    "citation": {
+     "quote": "Ernst & Young LLP, an independent registered public accounting firm that audited our Financial Statements included in this Annual Report, has issued an attestation report on our internal control over financial reporting"
+    }
+   },
+   "auditor_opinion": {
+    "value": "UNQUALIFIED",
+    "citation": {
+     "quote": "In our opinion, Empire State Realty Trust, Inc. (the Company) maintained, in all material respects, effective internal control over financial reporting as of December 31, 2024, based on the COSO criteria."
+    }
+   }
+  },
+  "findings": [
+   {
+    "gate": "support_check",
+    "field": "auditor_opinion",
+    "defect": "B_UNSUPPORTED",
+    "message": "span does not support auditor opinion UNQUALIFIED",
+    "span": [
+     5414,
+     5618
+    ]
+   }
+  ]
+ },
+ {
+  "company": "Southport Acquisition Corp  (PORT, PORTU, PORTW)  (CIK 0001865200)",
+  "text_file": "0001865200_000141057825000747.txt",
+  "extraction": {
+   "disclosure_controls_effective": {
+    "value": false,
+    "citation": {
+     "quote": "our disclosure controls and procedures were not effective due to the material weaknesses in internal control over financial reporting described below"
+    }
+   },
+   "icfr_effective": {
+    "value": false,
+    "citation": {
+     "quote": "management has concluded that our internal control over financial reporting was not effective as of December 31, 2024 as a result of the material weaknesses in internal control over financial reporting described above"
+    }
+   },
+   "material_weaknesses": [
+    {
+     "description": {
+      "value": "Company has not designed and maintained effective controls related to its process for recording accrued liabilities; it did not relieve an accrual that was no longer due and payable once it became likely that it would not be due and payable.",
+      "citation": {
+       "quote": "we identified a material weakness related to fact that we have not yet designed and maintained effective controls related to our process for recording accrued liabilities, specifically we did not relieve an accrual that was no longer due and payable once it became likely that it would not be due and payable"
+      }
+     },
+     "remediation_status": {
+      "value": "IN_PROGRESS",
+      "citation": {
+       "quote": "We will implement a remediation plan to address the material weakness identified as of December 31, 2024. Our Chief Executive Officer will perform additional post-closing review procedures including confirmation with vendors of amounts owed and outstanding at each period end."
+      }
+     }
+    },
+    {
+     "description": {
+      "value": "Company has not designed and maintained effective controls relating to the presentation of its statement of cash flows, originally identified as of December 31, 2022 and continuing as of December 31, 2024.",
+      "citation": {
+       "quote": "we identified a material weakness related to the fact that we have not yet designed and maintained effective controls relating to the presentation of our statement of cash flows, which continues to exist as of December 31, 2024"
+      }
+     },
+     "remediation_status": {
+      "value": "IN_PROGRESS",
+      "citation": {
+       "quote": "we implemented a remediation plan to address the material weakness identified as of December 31, 2022. Our Chief Executive Officer will continue to perform additional post-closing review procedures including consulting with subject matter experts related to the accounting for marketable securities and stockholder redemptions."
+      }
+     }
+    },
+    {
+     "description": {
+      "value": "Company had not designed and maintained effective controls relating to the recognition of excise tax liability within its financial statements, originally identified as of December 31, 2023 and continuing as of December 31, 2024.",
+      "citation": {
+       "quote": "we identified a material weakness related to the fact that we had not yet designed and maintained effective controls relating to the recognition of excise tax liability within our financial statements, which continues to exist as of December 31, 2024"
+      }
+     },
+     "remediation_status": {
+      "value": "IN_PROGRESS",
+      "citation": {
+       "quote": "we implemented a remediation plan to address the material weakness identified as of December 31, 2023. Our Chief Executive Officer will continue to perform additional post-closing review procedures including consulting with tax and legal subject matter experts related to the accounting for stockholder redemptions."
+      }
+     }
+    }
+   ],
+   "control_framework": {
+    "value": "COSO_2013",
+    "citation": {
+     "quote": "management used the criteria set forth in 2013 by the Committee of Sponsoring Organizations of the Treadway Commission (\"COSO\") in \"Internal Control-Integrated Framework.\""
+    }
+   },
+   "auditor_name": null,
+   "auditor_opinion": {
+    "value": "NOT_REQUIRED",
+    "citation": {
+     "quote": "Management's report was not subject to attestation by our registered public accounting firm pursuant to the rules of the SEC that permit us to provide only management's report in this Annual Report."
+    }
+   }
+  },
+  "findings": [
+   {
+    "gate": "support_check",
+    "field": "auditor_opinion",
+    "defect": "B_UNSUPPORTED",
+    "message": "span does not support auditor opinion NOT_REQUIRED",
+    "span": [
+     5865,
+     6063
+    ]
+   }
+  ]
+ },
+ {
+  "company": "ADVANCE AUTO PARTS INC  (AAP)  (CIK 0001158449)",
+  "text_file": "0001158449_000115844924000048.txt",
+  "extraction": {
+   "disclosure_controls_effective": {
+    "value": false,
+    "citation": {
+     "quote": "the Company's disclosure controls and procedures were not effective to accomplish their objectives at the reasonable assurance level due to the material weakness described below"
+    }
+   },
+   "icfr_effective": {
+    "value": false,
+    "citation": {
+     "quote": "the Company's internal control over financial reporting was not effective to accomplish their objectives at the reasonable assurance level solely due to the material weakness described below"
+    }
+   },
+   "material_weaknesses": [
+    {
+     "description": {
+      "value": "Material weakness in internal control over financial reporting due to turnover of key accounting positions; the Company was not able to attract, develop and retain sufficient resources to fulfill internal control and accounting responsibilities.",
+      "citation": {
+       "quote": "management identified a material weakness in our internal control over financial reporting that existed due to turnover of key accounting positions. The Company was not able to attract, develop and retain sufficient resources to fulfill internal control and accounting responsibilities."
+      }
+     },
+     "remediation_status": {
+      "value": "IN_PROGRESS",
+      "citation": {
+       "quote": "The material weakness will not be considered fully remediated until the remediation actions are tested and deemed to have been operating effectively for a sufficient period of time."
+      }
+     }
+    }
+   ],
+   "control_framework": {
+    "value": "COSO_2013",
+    "citation": {
+     "quote": "based on the criteria established in Internal Control - Integrated Framework (2013) issued by the Committee of Sponsoring Organizations of the Treadway Commission (\"COSO\")"
+    }
+   },
+   "auditor_name": {
+    "value": "Deloitte & Touche LLP",
+    "citation": {
+     "quote": "has been audited by Deloitte & Touche LLP, an independent registered public accounting firm"
+    }
+   },
+   "auditor_opinion": {
+    "value": "ADVERSE",
+    "citation": {
+     "quote": "which expresses an adverse opinion on the effectiveness of its internal control over financial reporting as of December 30, 2023"
+    }
+   }
+  },
+  "findings": [
+   {
+    "gate": "support_check",
+    "field": "material_weaknesses[0].remediation_status",
+    "defect": "B_UNSUPPORTED",
+    "message": "span does not support remediation status IN_PROGRESS",
+    "span": [
+     7552,
+     7733
+    ]
+   }
+  ]
+ },
+ {
+  "company": "FlexShopper, Inc.  (FPAY)  (CIK 0001397047)",
+  "text_file": "0001397047_000121390024028705.txt",
+  "extraction": {
+   "disclosure_controls_effective": {
+    "value": false,
+    "citation": {
+     "quote": "concluded that our disclosure controls and procedures were not effective as of December 31, 2023,"
+    }
+   },
+   "icfr_effective": {
+    "value": false,
+    "citation": {
+     "quote": "our management concluded that, as of December 31, 2023, our internal control over financial reporting was not\neffective, due to the material weakness described below."
+    }
+   },
+   "material_weaknesses": [
+    {
+     "description": {
+      "value": "Material weakness identified in connection with the December 31, 2022 financial statements due to a lack of effective controls over certain account analysis and accounting judgments related to the complex and ambiguous concepts associated with business combination accounting, where the initial intangible assets identified were not accurate.",
+      "citation": {
+       "quote": "This material weakness was due to a lack of effective controls over certain account analysis and accounting judgments related\nto the complex and ambiguous concepts associated with business combination accounting. The business combination that led to the material\nweakness was a unique, one-time transaction, where the initial intangible assets initially identified by the Company were not accurate."
+      }
+     },
+     "remediation_status": {
+      "value": "REMEDIATED",
+      "citation": {
+       "quote": "As\nof December 31, 2023, the material weakness described above was remediated as management of the Company increased the use of external\nconsultants."
+      }
+     }
+    },
+    {
+     "description": {
+      "value": "Material weakness identified in connection with the December 31, 2023 financial statements due to a lack of effective controls over the review of certain account calculations related to the tax provision as developed by a third-party service provider.",
+      "citation": {
+       "quote": "This material weakness is due to a lack of effective controls over the review of certain accounts calculations related to\nthe tax provision as developed by a third-party service provider."
+      }
+     },
+     "remediation_status": {
+      "value": "IN_PROGRESS",
+      "citation": {
+       "quote": "To remediate this material weakness, management is adding more in-depth review procedures to\nthe tax provision and either changing the tax third party service provider to a well-recognized tax and audit firm or expanding the federal\nand state tax knowledge of the accounting department."
+      }
+     }
+    }
+   ],
+   "control_framework": {
+    "value": "COSO_2013",
+    "citation": {
+     "quote": "management used the criteria established\nby the Committee of Sponsoring Organizations of the Treadway Commission in Internal Control - Integrated Framework (2013)"
+    }
+   },
+   "auditor_name": null,
+   "auditor_opinion": {
+    "value": "NOT_REQUIRED",
+    "citation": {
+     "quote": "Our\nindependent auditors have not audited and are not required to audit this assessment of our internal control over financial reporting\nfor the fiscal year ended December 31, 2023."
+    }
+   }
+  },
+  "findings": [
+   {
+    "gate": "support_check",
+    "field": "material_weaknesses[1].remediation_status",
+    "defect": "B_UNSUPPORTED",
+    "message": "span does not support remediation status IN_PROGRESS",
+    "span": [
+     5532,
+     5818
+    ]
+   },
+   {
+    "gate": "support_check",
+    "field": "auditor_opinion",
+    "defect": "B_UNSUPPORTED",
+    "message": "span does not support auditor opinion NOT_REQUIRED",
+    "span": [
+     7736,
+     7917
+    ]
+   }
+  ]
+ },
+ {
+  "company": "Endeavor Group Holdings, Inc.  (EDR)  (CIK 0001766363)",
+  "text_file": "0001766363_000095017025028394.txt",
+  "extraction": {
+   "disclosure_controls_effective": {
+    "value": true,
+    "citation": {
+     "quote": "concluded that the Company's disclosure controls and procedures were effective at the reasonable assurance level as of December 31, 2024"
+    }
+   },
+   "icfr_effective": {
+    "value": true,
+    "citation": {
+     "quote": "management concluded that as of December 31, 2024, the Company's internal control over financial reporting was effective"
+    }
+   },
+   "material_weaknesses": [],
+   "control_framework": {
+    "value": "COSO_2013",
+    "citation": {
+     "quote": "management used the criteria established in the Internal Control - Integrated Framework (2013) issued by the Committee of Sponsoring Organizations of the Treadway Commission"
+    }
+   },
+   "auditor_name": {
+    "value": "Deloitte & Touche LLP",
+    "citation": {
+     "quote": "has been audited by Deloitte & Touche LLP, an independent registered public accounting firm, as stated in their report which is below"
+    }
+   },
+   "auditor_opinion": {
+    "value": "UNQUALIFIED",
+    "citation": {
+     "quote": "In our opinion, based on our audit and the report of KPMG LLP, the Company maintained, in all material respects, effective internal control over financial reporting as of December 31, 2024"
+    }
+   }
+  },
+  "findings": [
+   {
+    "gate": "support_check",
+    "field": "auditor_opinion",
+    "defect": "B_UNSUPPORTED",
+    "message": "span does not support auditor opinion UNQUALIFIED",
+    "span": [
+     3041,
+     3229
+    ]
+   }
+  ]
+ },
+ {
+  "company": "TITAN PHARMACEUTICALS INC  (TTNP)  (CIK 0000910267)",
+  "text_file": "0000910267_000182912625001934.txt",
+  "extraction": {
+   "disclosure_controls_effective": {
+    "value": true,
+    "citation": {
+     "quote": "our principal executive and financial officers concluded that our disclosure controls and procedures are effective in timely providing them with material information relating to Titan"
+    }
+   },
+   "icfr_effective": {
+    "value": true,
+    "citation": {
+     "quote": "Based on this assessment, management has concluded that our internal control over financial reporting was effective as of December 31, 2024."
+    }
+   },
+   "material_weaknesses": [
+    {
+     "description": {
+      "value": "Material weakness identified in fiscal 2023 arising from limited finance and accounting staffing levels not commensurate with the company's complexity and financial reporting requirements, which resulted in the misclassification of approximately $0.4 million of issuance costs related to the issuance of preferred stock.",
+      "citation": {
+       "quote": "The deficiency primarily related to limited finance and accounting staffing levels not commensurate with our complexity and our financial accounting and reporting requirements."
+      }
+     },
+     "remediation_status": {
+      "value": "REMEDIATED",
+      "citation": {
+       "quote": "Based on these actions and testing of their effectiveness, management has concluded that the previously reported material weakness has been remediated, and our internal control over financial reporting was effective as of December 31, 2024."
+      }
+     }
+    }
+   ],
+   "control_framework": {
+    "value": "COSO_2013",
+    "citation": {
+     "quote": "Management has used the framework set forth in the report entitled Internal Control-Integrated Framework published by the Committee of Sponsoring Organizations of the Treadway Commission (2013 framework), known as COSO, to evaluate the effectiveness of Titan's internal control over financial reporting."
+    }
+   },
+   "auditor_name": null,
+   "auditor_opinion": {
+    "value": "NOT_REQUIRED",
+    "citation": {
+     "quote": "We are smaller reporting company and a non-accelerated filer, and therefore our independent registered public accounting firm has not issued a report on the effectiveness of internal control over financial reporting."
+    }
+   }
+  },
+  "findings": [
+   {
+    "gate": "support_check",
+    "field": "material_weaknesses[0].description",
+    "defect": "B_UNSUPPORTED",
+    "message": "material weakness description cites text that never mentions a material weakness",
+    "span": [
+     1375,
+     1551
+    ]
+   },
+   {
+    "gate": "support_check",
+    "field": "auditor_opinion",
+    "defect": "B_UNSUPPORTED",
+    "message": "span does not support auditor opinion NOT_REQUIRED",
+    "span": [
+     7311,
+     7527
+    ]
+   }
+  ]
+ },
+ {
+  "company": "JONES SODA CO  (JSDA)  (CIK 0001083522)",
+  "text_file": "0001083522_000143774923008382.txt",
+  "extraction": {
+   "disclosure_controls_effective": {
+    "value": false,
+    "citation": {
+     "quote": "our disclosure controls and procedures were not effective as of December 31, 2022"
+    }
+   },
+   "icfr_effective": {
+    "value": false,
+    "citation": {
+     "quote": "management concluded that we did not design and maintain effective controls over the completeness and accuracy of the accounting for, and disclosure of, short-term financings"
+    }
+   },
+   "material_weaknesses": [
+    {
+     "description": {
+      "value": "Failure to design and maintain effective controls over the completeness and accuracy of the accounting for, and disclosure of, short-term financings; specifically, controls were not designed to identify and reconcile prepaid assets and associated short-term liabilities, resulting in a material error related to the IPFS Corporation Financing Agreement that required restatement of the FY2021 consolidated financial statements and correction of unaudited quarterly information for Q1 and Q2 2022.",
+      "citation": {
+       "quote": "we did not design appropriate controls to identify and reconcile prepaid assets and associated short-term liabilities. This material weakness resulted in material error in connection with our IPFS Corporation Financing Agreement that was corrected through the restatement of the consolidated financial statements as of and for the year ended December 31, 2021, and the correction of the unaudited quarterly financial information for period endings March 31, 2022 and June 30, 2022."
+      }
+     },
+     "remediation_status": {
+      "value": "IN_PROGRESS",
+      "citation": {
+       "quote": "management is currently evaluating our policies and procedures related to the accounting for short term financings and is working to implement adequate internal controls"
+      }
+     }
+    }
+   ],
+   "control_framework": {
+    "value": "COSO_2013",
+    "citation": {
+     "quote": "based on the framework in Internal Control-Integrated Framework (2013) issued by the Committee of Sponsoring Organizations of the Treadway Commission (COSO)"
+    }
+   },
+   "auditor_name": null,
+   "auditor_opinion": {
+    "value": "NOT_REQUIRED",
+    "citation": {
+     "quote": "management's report was not subject to attestation by our registered public accounting firm pursuant to the permanent exemption from Section 404(b) of the Sarbanes-Oxley Act of 2002 for non-accelerated filers"
+    }
+   }
+  },
+  "findings": [
+   {
+    "gate": "support_check",
+    "field": "icfr_effective",
+    "defect": "B_UNSUPPORTED",
+    "message": "span does not mention internal control over financial reporting",
+    "span": [
+     4023,
+     4197
+    ]
+   },
+   {
+    "gate": "support_check",
+    "field": "material_weaknesses[0].remediation_status",
+    "defect": "B_UNSUPPORTED",
+    "message": "span does not support remediation status IN_PROGRESS",
+    "span": [
+     5145,
+     5314
+    ]
+   }
+  ]
+ }
+]

@@ -1,0 +1,857 @@
+[
+  {
+    "cik": "0001856031",
+    "company": "Vivid Seats Inc.  (SEAT, SEATW)  (CIK 0001856031)",
+    "form": "10-K/A",
+    "filed": "2023-05-09",
+    "period": "2022-12-31",
+    "accession": "0000950170-23-019093",
+    "document": "seat-20221231.htm"
+  },
+  {
+    "cik": "0001568969",
+    "company": "APPYEA, INC  (APYP)  (CIK 0001568969)",
+    "form": "10-K/A",
+    "filed": "2024-05-17",
+    "period": "2023-12-31",
+    "accession": "0001493152-24-020365",
+    "document": "form10-ka.htm"
+  },
+  {
+    "cik": "0001784567",
+    "company": "Harbor Custom Development, Inc.  (CIK 0001784567)",
+    "form": "10-K/A",
+    "filed": "2024-01-18",
+    "period": "2022-12-31",
+    "accession": "0001493152-24-002901",
+    "document": "form10-ka.htm"
+  },
+  {
+    "cik": "0001779474",
+    "company": "WM TECHNOLOGY, INC.  (MAPS, MAPSW)  (CIK 0001779474)",
+    "form": "10-K/A",
+    "filed": "2024-08-30",
+    "period": "2023-12-31",
+    "accession": "0001779474-24-000045",
+    "document": "maps-20231231.htm"
+  },
+  {
+    "cik": "0001725057",
+    "company": "Ceridian HCM Holding Inc.  (DAY)  (CIK 0001725057)",
+    "form": "10-K/A",
+    "filed": "2023-11-13",
+    "period": "2022-12-31",
+    "accession": "0000950170-23-062413",
+    "document": "cday-20221231.htm"
+  },
+  {
+    "cik": "0001657788",
+    "company": "Kimbell Royalty Partners, LP  (KRP)  (CIK 0001657788)",
+    "form": "10-K/A",
+    "filed": "2024-11-08",
+    "period": "2023-12-31",
+    "accession": "0001558370-24-015071",
+    "document": "krp-20231231x10ka.htm"
+  },
+  {
+    "cik": "0001397047",
+    "company": "FlexShopper, Inc.  (FPAY)  (CIK 0001397047)",
+    "form": "10-K",
+    "filed": "2024-04-01",
+    "period": "2023-12-31",
+    "accession": "0001213900-24-028705",
+    "document": "ea0201176-10k_flex.htm"
+  },
+  {
+    "cik": "0001951051",
+    "company": "JAAG Enterprises Ltd.  (JAGL)  (CIK 0001951051)",
+    "form": "10-K",
+    "filed": "2024-10-15",
+    "period": "2024-06-30",
+    "accession": "0001640334-24-001515",
+    "document": "jaag_10k.htm"
+  },
+  {
+    "cik": "0001794942",
+    "company": "Stark Focus Group, Inc.  (SKFG)  (CIK 0001794942)",
+    "form": "10-K",
+    "filed": "2025-04-14",
+    "period": "2024-12-31",
+    "accession": "0001640334-25-000623",
+    "document": "stark_10k.htm"
+  },
+  {
+    "cik": "0001865200",
+    "company": "Southport Acquisition Corp  (PORT, PORTU, PORTW)  (CIK 0001865200)",
+    "form": "10-K",
+    "filed": "2025-04-15",
+    "period": "2024-12-31",
+    "accession": "0001410578-25-000747",
+    "document": "port-20241231x10k.htm"
+  },
+  {
+    "cik": "0001025771",
+    "company": "CHASE PACKAGING CORP  (WHLT)  (CIK 0001025771)",
+    "form": "10-K",
+    "filed": "2024-04-16",
+    "period": "2023-12-31",
+    "accession": "0001477932-24-002131",
+    "document": "cpka_10k.htm"
+  },
+  {
+    "cik": "0001289850",
+    "company": "NeuroMetrix, Inc.  (NURO)  (CIK 0001289850)",
+    "form": "10-K",
+    "filed": "2023-03-22",
+    "period": "2022-12-31",
+    "accession": "0001628280-23-008931",
+    "document": "nuro-20221231.htm"
+  },
+  {
+    "cik": "0001169445",
+    "company": "TruBridge, Inc.  (TBRG)  (CIK 0001169445)",
+    "form": "10-K/A",
+    "filed": "2024-08-14",
+    "period": "2023-12-31",
+    "accession": "0001169445-24-000060",
+    "document": "tbrg-20231231.htm"
+  },
+  {
+    "cik": "0001621906",
+    "company": "Western Uranium & Vanadium Corp.  (WSTRF)  (CIK 0001621906)",
+    "form": "10-K/A",
+    "filed": "2024-08-14",
+    "period": "2023-12-31",
+    "accession": "0001213900-24-069112",
+    "document": "ea0210225-10ka1_western.htm"
+  },
+  {
+    "cik": "0001530163",
+    "company": "Samsara Luggage, Inc.  (SAML)  (CIK 0001530163)",
+    "form": "10-K/A",
+    "filed": "2024-10-04",
+    "period": "2023-12-31",
+    "accession": "0001213900-24-085538",
+    "document": "ea0216759-10ka1_samsara.htm"
+  },
+  {
+    "cik": "0001785493",
+    "company": "Phoenix Plus Corp.  (PXPC)  (CIK 0001785493)",
+    "form": "10-K/A",
+    "filed": "2024-05-21",
+    "period": "2023-07-31",
+    "accession": "0001493152-24-020808",
+    "document": "form10-ka.htm"
+  },
+  {
+    "cik": "0001755101",
+    "company": "APPlife Digital Solutions Inc  (ALDS)  (CIK 0001755101)",
+    "form": "10-K/A",
+    "filed": "2025-02-26",
+    "period": "2024-06-30",
+    "accession": "0001096906-25-000202",
+    "document": "alds-20240630.htm"
+  },
+  {
+    "cik": "0001285543",
+    "company": "Zerify, Inc.  (ZRFY)  (CIK 0001285543)",
+    "form": "10-K/A",
+    "filed": "2023-06-27",
+    "period": "2022-12-31",
+    "accession": "0001477932-23-004791",
+    "document": "zrfy_10ka.htm"
+  },
+  {
+    "cik": "0001741489",
+    "company": "Elvictor Group, Inc.  (ELVG)  (CIK 0001741489)",
+    "form": "10-K/A",
+    "filed": "2023-08-09",
+    "period": "2022-12-31",
+    "accession": "0001213900-23-065079",
+    "document": "f10k2022a2_elvictor.htm"
+  },
+  {
+    "cik": "0001898474",
+    "company": "Signing Day Sports, Inc.  (SGN)  (CIK 0001898474)",
+    "form": "10-K/A",
+    "filed": "2025-08-06",
+    "period": "2024-12-31",
+    "accession": "0001213900-25-072289",
+    "document": "ea0251970-10ka1_signing.htm"
+  },
+  {
+    "cik": "0001524872",
+    "company": "Thunder Energies Corp  (TNRG)  (CIK 0001524872)",
+    "form": "10-K/A",
+    "filed": "2024-06-18",
+    "period": "2023-12-31",
+    "accession": "0001683168-24-004325",
+    "document": "thunder_i10ka1-123123.htm"
+  },
+  {
+    "cik": "0001415813",
+    "company": "Un Monde International Ltd.  (ARMC)  (CIK 0001415813)",
+    "form": "10-K/A",
+    "filed": "2023-10-03",
+    "period": "2021-12-31",
+    "accession": "0001683168-23-006894",
+    "document": "unmonde_i10ka3.htm"
+  },
+  {
+    "cik": "0001703157",
+    "company": "Securetech Innovations, Inc.  (SCTH)  (CIK 0001703157)",
+    "form": "10-K/A",
+    "filed": "2023-01-10",
+    "period": "2021-12-31",
+    "accession": "0001017386-23-000016",
+    "document": "scth_form10ka12021.htm"
+  },
+  {
+    "cik": "0001121795",
+    "company": "GHST World Inc.  (GHST)  (CIK 0001121795)",
+    "form": "10-K/A",
+    "filed": "2023-11-29",
+    "period": "2023-06-30",
+    "accession": "0001079973-23-001671",
+    "document": "ghst_10ka.htm"
+  },
+  {
+    "cik": "0001648960",
+    "company": "DatChat, Inc.  (DATS, DATSW)  (CIK 0001648960)",
+    "form": "10-K/A",
+    "filed": "2023-05-12",
+    "period": "2022-12-31",
+    "accession": "0001213900-23-039056",
+    "document": "f10k2022a1_datchatinc.htm"
+  },
+  {
+    "cik": "0001282631",
+    "company": "NETLIST INC  (NLST)  (CIK 0001282631)",
+    "form": "10-K",
+    "filed": "2023-02-28",
+    "period": "2022-12-31",
+    "accession": "0001558370-23-002384",
+    "document": "nlst-20221231xex23.htm"
+  },
+  {
+    "cik": "0001658521",
+    "company": "MOUNTAIN TOP PROPERTIES, INC.  (MTPP)  (CIK 0001658521)",
+    "form": "10-K/A",
+    "filed": "2023-07-20",
+    "period": "2022-12-31",
+    "accession": "0000745543-23-000009",
+    "document": "filename5.htm"
+  },
+  {
+    "cik": "0001856161",
+    "company": "Pearl Holdings Acquisition Corp  (PRLH, PRLHU, PRLHW)  (CIK 0001856161)",
+    "form": "10-K/A",
+    "filed": "2024-05-24",
+    "period": "2023-12-31",
+    "accession": "0001829126-24-003758",
+    "document": "pearlholdings_10ka.htm"
+  },
+  {
+    "cik": "0001961847",
+    "company": "INNO HOLDINGS INC.  (INHD)  (CIK 0001961847)",
+    "form": "10-K/A",
+    "filed": "2025-02-25",
+    "period": "2024-09-30",
+    "accession": "0001493152-25-008208",
+    "document": "form10-ka.htm"
+  },
+  {
+    "cik": "0001777921",
+    "company": "AvePoint, Inc.  (AVPT, AVPTW)  (CIK 0001777921)",
+    "form": "10-K/A",
+    "filed": "2023-06-13",
+    "period": "2022-12-31",
+    "accession": "0001437749-23-017196",
+    "document": "avpt20221231_10ka.htm"
+  },
+  {
+    "cik": "0001973047",
+    "company": "MARKY CORP.  (CIK 0001973047)",
+    "form": "10-K",
+    "filed": "2024-05-06",
+    "period": "2024-01-31",
+    "accession": "0001973047-24-000012",
+    "document": "marky_10k2024.htm"
+  },
+  {
+    "cik": "0001741257",
+    "company": "BANGFU TECHNOLOGY GROUP CO., LTD.  (BFGX)  (CIK 0001741257)",
+    "form": "10-K",
+    "filed": "2023-10-13",
+    "period": "2023-06-30",
+    "accession": "0001731122-23-001899",
+    "document": "e5127_10k.htm"
+  },
+  {
+    "cik": "0001995920",
+    "company": "E-Smart Corp.  (CIK 0001995920)",
+    "form": "10-K",
+    "filed": "2025-11-26",
+    "period": "2025-08-31",
+    "accession": "0001995920-25-000021",
+    "document": "esmart_10k2025.htm"
+  },
+  {
+    "cik": "0001753373",
+    "company": "INKY INC.  (MTWO)  (CIK 0001753373)",
+    "form": "10-K",
+    "filed": "2023-03-15",
+    "period": "2022-11-30",
+    "accession": "0001753373-23-000006",
+    "document": "inky_10kreport2022.htm"
+  },
+  {
+    "cik": "0001842563",
+    "company": "Go Go Buyers, Inc.  (CIK 0001842563)",
+    "form": "10-K",
+    "filed": "2023-04-17",
+    "period": "2022-12-31",
+    "accession": "0001842563-23-000006",
+    "document": "gogo_10k2022.htm"
+  },
+  {
+    "cik": "0001467761",
+    "company": "FiEE, Inc.  (FIEE)  (CIK 0001467761)",
+    "form": "10-K/A",
+    "filed": "2025-08-20",
+    "period": "2024-12-31",
+    "accession": "0001829126-25-006571",
+    "document": "fieeinc_10ka.htm"
+  },
+  {
+    "cik": "0001737523",
+    "company": "BioNexus Gene Lab Corp  (BGLC)  (CIK 0001737523)",
+    "form": "10-K/A",
+    "filed": "2024-05-31",
+    "period": "2022-12-31",
+    "accession": "0001477932-24-003418",
+    "document": "bglc_10ka.htm"
+  },
+  {
+    "cik": "0001618732",
+    "company": "Nutanix, Inc.  (NTNX)  (CIK 0001618732)",
+    "form": "10-K/A",
+    "filed": "2023-05-24",
+    "period": "2022-07-31",
+    "accession": "0000950170-23-023902",
+    "document": "ntnx-20220731.htm"
+  },
+  {
+    "cik": "0001938109",
+    "company": "Pineapple Financial Inc.  (PAPL)  (CIK 0001938109)",
+    "form": "10-K/A",
+    "filed": "2025-12-12",
+    "period": "2025-08-31",
+    "accession": "0001493152-25-027511",
+    "document": "form10-ka.htm"
+  },
+  {
+    "cik": "0001845123",
+    "company": "Swiftmerge Acquisition Corp.  (IVCP, IVCPU, IVCPW)  (CIK 0001845123)",
+    "form": "10-K/A",
+    "filed": "2024-06-27",
+    "period": "2023-12-31",
+    "accession": "0001193125-24-170543",
+    "document": "d838597d10ka.htm"
+  },
+  {
+    "cik": "0001613685",
+    "company": "TRENDMAKER INC. LTD.  (CIK 0001613685)",
+    "form": "10-K",
+    "filed": "2023-02-21",
+    "period": "2022-12-31",
+    "accession": "0001493152-23-005567",
+    "document": "form10-k.htm"
+  },
+  {
+    "cik": "0001022505",
+    "company": "SideChannel, Inc.  (SDCH)  (CIK 0001022505)",
+    "form": "10-K/A",
+    "filed": "2025-03-13",
+    "period": "2024-09-30",
+    "accession": "0001493152-25-010194",
+    "document": "form10-ka.htm"
+  },
+  {
+    "cik": "0001923840",
+    "company": "Third Harmonic Bio, Inc.  (THRD)  (CIK 0001923840)",
+    "form": "10-K",
+    "filed": "2024-03-26",
+    "period": "2023-12-31",
+    "accession": "0000950170-24-036161",
+    "document": "thrd-20231231.htm"
+  },
+  {
+    "cik": "0001766368",
+    "company": "Mayville Engineering Company, Inc.  (MEC)  (CIK 0001766368)",
+    "form": "10-K",
+    "filed": "2025-03-06",
+    "period": "2024-12-31",
+    "accession": "0001558370-25-002369",
+    "document": "tmb-20241231x10k.htm"
+  },
+  {
+    "cik": "0001357971",
+    "company": "Energy Services of America CORP  (ESOA)  (CIK 0001357971)",
+    "form": "10-K/A",
+    "filed": "2023-05-31",
+    "period": "2022-09-30",
+    "accession": "0001410578-23-001401",
+    "document": "esoa-20220930x10ka.htm"
+  },
+  {
+    "cik": "0001477845",
+    "company": "Annovis Bio, Inc.  (ANVS)  (CIK 0001477845)",
+    "form": "10-K",
+    "filed": "2023-03-31",
+    "period": "2022-12-31",
+    "accession": "0001104659-23-040275",
+    "document": "anvs-20221231x10k.htm"
+  },
+  {
+    "cik": "0001158449",
+    "company": "ADVANCE AUTO PARTS INC  (AAP)  (CIK 0001158449)",
+    "form": "10-K",
+    "filed": "2024-03-12",
+    "period": "2023-12-30",
+    "accession": "0001158449-24-000048",
+    "document": "aap-20231230.htm"
+  },
+  {
+    "cik": "0001819974",
+    "company": "SkyWater Technology, Inc  (SKYT)  (CIK 0001819974)",
+    "form": "10-K",
+    "filed": "2025-03-14",
+    "period": "2024-12-29",
+    "accession": "0001819974-25-000010",
+    "document": "skyt-20241229.htm"
+  },
+  {
+    "cik": "0000088948",
+    "company": "Seneca Foods Corp  (SENEA, SENEB, SENEL, SENEM)  (CIK 0000088948)",
+    "form": "10-K",
+    "filed": "2024-06-13",
+    "period": "2024-03-31",
+    "accession": "0001437749-24-020198",
+    "document": "senea20240331_10k.htm"
+  },
+  {
+    "cik": "0000056978",
+    "company": "KULICKE & SOFFA INDUSTRIES INC  (KLIC)  (CIK 0000056978)",
+    "form": "10-K/A",
+    "filed": "2023-08-08",
+    "period": "2022-10-01",
+    "accession": "0000056978-23-000103",
+    "document": "klic-20221001.htm"
+  },
+  {
+    "cik": "0001624985",
+    "company": "Tribal Rides International Corp.  (XNDA)  (CIK 0001624985)",
+    "form": "10-K",
+    "filed": "2023-04-17",
+    "period": "2022-12-31",
+    "accession": "0001683168-23-002473",
+    "document": "tribalrides_i10k-123122.htm"
+  },
+  {
+    "cik": "0001541401",
+    "company": "Empire State Realty Trust, Inc.  (ESRT)  (CIK 0001541401)",
+    "form": "10-K",
+    "filed": "2025-02-28",
+    "period": "2024-12-31",
+    "accession": "0001541401-25-000003",
+    "document": "esrt-20241231.htm"
+  },
+  {
+    "cik": "0001553079",
+    "company": "Empire State Realty OP, L.P.  (ESBA, FISK, OGCP)  (CIK 0001553079)",
+    "form": "10-K",
+    "filed": "2025-02-28",
+    "period": "2024-12-31",
+    "accession": "0001553079-25-000005",
+    "document": "esrt-20241231.htm"
+  },
+  {
+    "cik": "0001083522",
+    "company": "JONES SODA CO  (JSDA)  (CIK 0001083522)",
+    "form": "10-K",
+    "filed": "2023-03-29",
+    "period": "2022-12-31",
+    "accession": "0001437749-23-008382",
+    "document": "jsda20221231_10k.htm"
+  },
+  {
+    "cik": "0000758743",
+    "company": "VIDEO DISPLAY CORP  (VIDE)  (CIK 0000758743)",
+    "form": "10-K",
+    "filed": "2023-05-30",
+    "period": "2023-02-28",
+    "accession": "0001193125-23-156706",
+    "document": "d357819d10k.htm"
+  },
+  {
+    "cik": "0001759824",
+    "company": "ALTA EQUIPMENT GROUP INC.  (ALTG, ALTG-PA)  (CIK 0001759824)",
+    "form": "10-K",
+    "filed": "2023-03-09",
+    "period": "2022-12-31",
+    "accession": "0000950170-23-007039",
+    "document": "altg-20221231.htm"
+  },
+  {
+    "cik": "0000088000",
+    "company": "Scott's Liquid Gold - Inc.  (HKHC, SLGDD)  (CIK 0000088000)",
+    "form": "10-K",
+    "filed": "2023-03-29",
+    "period": "2022-12-31",
+    "accession": "0000950170-23-010594",
+    "document": "slgd-20221231.htm"
+  },
+  {
+    "cik": "0001384905",
+    "company": "RingCentral, Inc.  (RNG)  (CIK 0001384905)",
+    "form": "10-K/A",
+    "filed": "2024-04-24",
+    "period": "2023-12-31",
+    "accession": "0001384905-24-000024",
+    "document": "rng-20231231.htm"
+  },
+  {
+    "cik": "0000867840",
+    "company": "PRECISION OPTICS CORPORATION, INC.  (POCI)  (CIK 0000867840)",
+    "form": "10-K/A",
+    "filed": "2024-02-28",
+    "period": "2023-06-30",
+    "accession": "0001683168-24-001234",
+    "document": "poci_i10ka1-063023.htm"
+  },
+  {
+    "cik": "0001672688",
+    "company": "Absci Corp  (ABSI)  (CIK 0001672688)",
+    "form": "10-K/A",
+    "filed": "2023-05-30",
+    "period": "2022-12-31",
+    "accession": "0001628280-23-020162",
+    "document": "absi-20221231.htm"
+  },
+  {
+    "cik": "0001505155",
+    "company": "Upland Software, Inc.  (UPLD)  (CIK 0001505155)",
+    "form": "10-K/A",
+    "filed": "2025-07-31",
+    "period": "2024-12-31",
+    "accession": "0001505155-25-000089",
+    "document": "upld-20241231.htm"
+  },
+  {
+    "cik": "0001850079",
+    "company": "Telesis Bio Inc.  (TBIO)  (CIK 0001850079)",
+    "form": "10-K/A",
+    "filed": "2023-05-17",
+    "period": "2022-12-31",
+    "accession": "0001193125-23-146986",
+    "document": "d446492d10ka.htm"
+  },
+  {
+    "cik": "0000039092",
+    "company": "FRIEDMAN INDUSTRIES INC  (FRD)  (CIK 0000039092)",
+    "form": "10-K/A",
+    "filed": "2025-01-23",
+    "period": "2024-03-31",
+    "accession": "0001437749-25-001670",
+    "document": "frd20240331_10ka.htm"
+  },
+  {
+    "cik": "0001828791",
+    "company": "Viant Technology Inc.  (DSP)  (CIK 0001828791)",
+    "form": "10-K/A",
+    "filed": "2025-12-11",
+    "period": "2024-12-31",
+    "accession": "0001828791-25-000084",
+    "document": "dsp-20241231.htm"
+  },
+  {
+    "cik": "0000314227",
+    "company": "TOMI Environmental Solutions, Inc.  (TOMZ)  (CIK 0000314227)",
+    "form": "10-K/A",
+    "filed": "2024-11-12",
+    "period": "2023-12-31",
+    "accession": "0001654954-24-014186",
+    "document": "tomz_10ka.htm"
+  },
+  {
+    "cik": "0001794515",
+    "company": "ZoomInfo Technologies Inc.  (ZI)  (CIK 0001794515)",
+    "form": "10-K/A",
+    "filed": "2024-12-20",
+    "period": "2023-12-31",
+    "accession": "0001794515-24-000211",
+    "document": "zi-20231231.htm"
+  },
+  {
+    "cik": "0001852131",
+    "company": "Nextracker Inc.  (NXT)  (CIK 0001852131)",
+    "form": "10-K/A",
+    "filed": "2024-06-06",
+    "period": "2024-03-31",
+    "accession": "0001852131-24-000003",
+    "document": "a10-kafy24.htm"
+  },
+  {
+    "cik": "0001837014",
+    "company": "SmartRent, Inc.  (SMRT)  (CIK 0001837014)",
+    "form": "10-K/A",
+    "filed": "2023-05-09",
+    "period": "2022-12-31",
+    "accession": "0000950170-23-019690",
+    "document": "smrt-20221231.htm"
+  },
+  {
+    "cik": "0001362516",
+    "company": "Cleartronic, Inc.  (CLRI)  (CIK 0001362516)",
+    "form": "10-K/A",
+    "filed": "2023-04-28",
+    "period": "2022-09-30",
+    "accession": "0001091818-23-000064",
+    "document": "clri4282310ka.htm"
+  },
+  {
+    "cik": "0001911467",
+    "company": "Circle Energy, Inc./NV  (CRCE)  (CIK 0001911467)",
+    "form": "10-K/A",
+    "filed": "2024-07-15",
+    "period": "2023-12-31",
+    "accession": "0001096906-24-001520",
+    "document": "crcl-20231231.htm"
+  },
+  {
+    "cik": "0000918545",
+    "company": "BALTIC INTERNATIONAL USA INC  (BISA)  (CIK 0000918545)",
+    "form": "10-K",
+    "filed": "2025-04-15",
+    "period": "2024-12-31",
+    "accession": "0000918545-25-000002",
+    "document": "r10k2024.txt"
+  },
+  {
+    "cik": "0001279715",
+    "company": "Wright Investors Service Holdings, Inc.  (IWSH)  (CIK 0001279715)",
+    "form": "10-K",
+    "filed": "2025-03-27",
+    "period": "2024-12-31",
+    "accession": "0001214659-25-004885",
+    "document": "iwsh-20241231.htm"
+  },
+  {
+    "cik": "0001912954",
+    "company": "WidFit Inc.  (CIK 0001912954)",
+    "form": "10-K",
+    "filed": "2025-07-22",
+    "period": "2024-12-31",
+    "accession": "0001139020-25-000234",
+    "document": "wdfi-20241231.htm"
+  },
+  {
+    "cik": "0001664740",
+    "company": "MBC FUNDING II CORP.  (CIK 0001664740)",
+    "form": "10-K",
+    "filed": "2025-03-12",
+    "period": "2024-12-31",
+    "accession": "0001493152-25-009930",
+    "document": "form10-k.htm"
+  },
+  {
+    "cik": "0000016099",
+    "company": "LUB LIQUIDATING TRUST  (CIK 0000016099)",
+    "form": "10-K",
+    "filed": "2025-03-24",
+    "period": "2024-12-31",
+    "accession": "0001193125-25-061022",
+    "document": "d887675d10k.htm"
+  },
+  {
+    "cik": "0000910267",
+    "company": "TITAN PHARMACEUTICALS INC  (TTNP)  (CIK 0000910267)",
+    "form": "10-K",
+    "filed": "2025-03-20",
+    "period": "2024-12-31",
+    "accession": "0001829126-25-001934",
+    "document": "titanpharma_10k.htm"
+  },
+  {
+    "cik": "0000825788",
+    "company": "DIVALL INSURED INCOME PROPERTIES 2 LIMITED PARTNERSHIP  (CIK 0000825788)",
+    "form": "10-K",
+    "filed": "2025-04-15",
+    "period": "2024-12-31",
+    "accession": "0001641172-25-004893",
+    "document": "form10-k.htm"
+  },
+  {
+    "cik": "0001023458",
+    "company": "AEI INCOME & GROWTH FUND XXII LTD PARTNERSHIP  (XAEIU)  (CIK 0001023458)",
+    "form": "10-K",
+    "filed": "2025-03-28",
+    "period": "2024-12-31",
+    "accession": "0001023458-25-000009",
+    "document": "aei22-20241231.htm"
+  },
+  {
+    "cik": "0000931755",
+    "company": "AEI INCOME & GROWTH FUND XXI LTD PARTNERSHIP  (XXAAU)  (CIK 0000931755)",
+    "form": "10-K",
+    "filed": "2025-03-28",
+    "period": "2024-12-31",
+    "accession": "0000931755-25-000007",
+    "document": "aei21-20241231.htm"
+  },
+  {
+    "cik": "0001185198",
+    "company": "AEI INCOME & GROWTH FUND 25 LLC  (CIK 0001185198)",
+    "form": "10-K",
+    "filed": "2025-03-28",
+    "period": "2024-12-31",
+    "accession": "0001023458-25-000011",
+    "document": "aei25-20241231.htm"
+  },
+  {
+    "cik": "0000830616",
+    "company": "SCI Engineered Materials, Inc.  (SCIA)  (CIK 0000830616)",
+    "form": "10-K",
+    "filed": "2025-02-14",
+    "period": "2024-12-31",
+    "accession": "0001558370-25-000969",
+    "document": "scia-20241231x10k.htm"
+  },
+  {
+    "cik": "0001128281",
+    "company": "Saker Aviation Services, Inc.  (SKAS)  (CIK 0001128281)",
+    "form": "10-K",
+    "filed": "2025-04-15",
+    "period": "2024-12-31",
+    "accession": "0001437749-25-012074",
+    "document": "skas20241231_10k.htm"
+  },
+  {
+    "cik": "0000101295",
+    "company": "UNITED GUARDIAN INC  (UG)  (CIK 0000101295)",
+    "form": "10-K",
+    "filed": "2025-03-21",
+    "period": "2024-12-31",
+    "accession": "0001171843-25-001611",
+    "document": "ug20241231_10k.htm"
+  },
+  {
+    "cik": "0001049606",
+    "company": "COMPX INTERNATIONAL INC  (CIX)  (CIK 0001049606)",
+    "form": "10-K",
+    "filed": "2025-03-05",
+    "period": "2024-12-31",
+    "accession": "0001558370-25-002264",
+    "document": "cix-20241231x10k.htm"
+  },
+  {
+    "cik": "0001766363",
+    "company": "Endeavor Group Holdings, Inc.  (EDR)  (CIK 0001766363)",
+    "form": "10-K",
+    "filed": "2025-02-27",
+    "period": "2024-12-31",
+    "accession": "0000950170-25-028394",
+    "document": "edr-ex99_1.htm"
+  },
+  {
+    "cik": "0001618181",
+    "company": "World Gold Trust  (GLDM)  (CIK 0001618181)",
+    "form": "10-K",
+    "filed": "2023-11-22",
+    "period": "2023-09-30",
+    "accession": "0001437749-23-032877",
+    "document": "gldm20230930_10k.htm"
+  },
+  {
+    "cik": "0001701051",
+    "company": "WideOpenWest, Inc.  (WOW)  (CIK 0001701051)",
+    "form": "10-K/A",
+    "filed": "2024-09-04",
+    "period": "2023-12-31",
+    "accession": "0001558370-24-012576",
+    "document": "wow-20231231x10ka.htm"
+  },
+  {
+    "cik": "0000105418",
+    "company": "WEIS MARKETS INC  (WMK)  (CIK 0000105418)",
+    "form": "10-K",
+    "filed": "2024-02-28",
+    "period": "2023-12-30",
+    "accession": "0000105418-24-000015",
+    "document": "wmk-20231230x10k.htm"
+  },
+  {
+    "cik": "0000105016",
+    "company": "WATSCO INC  (WSO, WSO-B)  (CIK 0000105016)",
+    "form": "10-K",
+    "filed": "2023-02-24",
+    "period": "2022-12-31",
+    "accession": "0001193125-23-048758",
+    "document": "d713254dex13.htm"
+  },
+  {
+    "cik": "0000066004",
+    "company": "MIDDLESEX WATER CO  (MSEX, MSEXP)  (CIK 0000066004)",
+    "form": "10-K/A",
+    "filed": "2023-11-08",
+    "period": "2022-12-31",
+    "accession": "0001174947-23-001363",
+    "document": "f10k2022a1_middlesex.htm"
+  },
+  {
+    "cik": "0000033488",
+    "company": "ESCALADE INC  (ESCA)  (CIK 0000033488)",
+    "form": "10-K/A",
+    "filed": "2024-03-29",
+    "period": "2022-12-31",
+    "accession": "0001437749-24-009943",
+    "document": "esca20221231c_10ka.htm"
+  },
+  {
+    "cik": "0001701758",
+    "company": "Lovesac Co  (LOVE)  (CIK 0001701758)",
+    "form": "10-K/A",
+    "filed": "2023-11-30",
+    "period": "2023-01-29",
+    "accession": "0001628280-23-040367",
+    "document": "love-20230129.htm"
+  },
+  {
+    "cik": "0001702780",
+    "company": "Altice USA, Inc.  (ATUS)  (CIK 0001702780)",
+    "form": "10-K/A",
+    "filed": "2024-08-01",
+    "period": "2023-12-31",
+    "accession": "0001628280-24-034231",
+    "document": "atus-20231231.htm"
+  },
+  {
+    "cik": "0000002098",
+    "company": "ACME UNITED CORP  (ACU)  (CIK 0000002098)",
+    "form": "10-K",
+    "filed": "2023-03-10",
+    "period": "2022-12-31",
+    "accession": "0001564590-23-003422",
+    "document": "acu-10k_20221231.htm"
+  },
+  {
+    "cik": "0001298675",
+    "company": "CubeSmart  (CUBE)  (CIK 0001298675)",
+    "form": "10-K",
+    "filed": "2024-02-29",
+    "period": "2023-12-31",
+    "accession": "0001298675-24-000011",
+    "document": "cube-20231231x10k.htm"
+  }
+]
