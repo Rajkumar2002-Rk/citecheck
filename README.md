@@ -3,15 +3,15 @@
 **What happens to an LLM's citations when you check every single one against the
 source text?**
 
-I expected to catch it inventing support for things the filing never said. That's
-the failure everyone worries about with provenance, and it's the one I built this
-to measure.
+I expected to catch it inventing support for things the filing never said.
+That's the failure everyone worries about, and it's the one I built this to
+check.
 
 It never happened. Not once, across 354 cited fields in 30 real SEC filings.
 
-What I found instead was that my own verification layer, the deterministic part,
-the part that felt authoritative, was wrong eight separate times. One of those
-errors put a false number in this README before I caught it.
+What I found instead was that my own checking code, the part that never calls a
+model and feels like the trustworthy half, was wrong eight separate times. One
+of those errors put a false number in this README before I caught it.
 
 ---
 
@@ -33,22 +33,23 @@ filings myself to check the claims.
 | wall clock | 70 min | 4 min |
 
 Two citation modes, run as an A/B. In span mode the model reports character
-offsets itself. In quote mode it returns the quoted text and the harness finds it
-with `str.find`.
+offsets itself. In quote mode it returns the quoted text and the harness finds
+it with `str.find`.
 
 Three things fall out of that table.
 
 ## 1. It never fabricated a quote
 
 Every quoted passage appears verbatim in the filing, in both modes, across every
-cited field. Whatever else goes wrong here, the model doesn't invent source text.
+cited field. Whatever else goes wrong here, the model doesn't invent source
+text.
 
 ## 2. Self-reported offsets are expensive and pointless
 
 Every offset failure was a constant per-document drift. All 14 filings with
 offset errors showed a single consistent shift, usually one character, once 66.
 None of them produced scattered offsets. The model knows where the text is. It
-just anchors its coordinate frame differently from the file.
+just starts counting from a different place than the file does.
 
 So asking for offsets costs ten times more, takes fifteen times longer, and
 creates a defect class that wouldn't otherwise exist. If you need character
@@ -59,7 +60,7 @@ spans, have the model quote the passage and locate it yourself.
 This is the one that matters.
 
 Citation integrity in quote mode is 96.6%. Three filings still came back with a
-factual error, and two of those passed every citation check. The provenance was
+factual error, and two of those passed every citation check. The citation was
 fine. The claim was wrong.
 
 | filing | hand-labeled | model | |
@@ -69,21 +70,21 @@ fine. The claim was wrong.
 | Tribal Rides | 3 | 1 | three weaknesses in one sentence, under-counted |
 | Trendmaker | 1 | 2 | counted late SEC filings as a control weakness |
 
-The repeating error is worth naming. Some filings cite COSO's *Internal Control -
-Integrated Framework* without saying whether they mean the 1992 or the 2013
-version. The model reports that no framework was stated at all, collapsing "named
-but ambiguous" into "not named". In audit terms that erases a disclosure the
-company actually made.
+The repeating error is worth naming. Some filings cite COSO's *Internal Control
+- Integrated Framework* without saying whether they mean the 1992 or the 2013
+version. The model says no framework was stated at all. It turns "named, but no
+version given" into "not named", which wipes out a disclosure the company
+actually made.
 
-It's the only error that reproduced across prompt versions, so it's now caught
-deterministically:
+It's the only error that showed up again when I changed the prompt, so it's now
+caught by a rule instead:
 
 > `NOT_STATED` is a claim about the absence of something, and you can't verify an
 > absence by reading the one passage the model chose to cite.
 
-The check reads the whole section instead. If the framework is named anywhere,
-`NOT_STATED` is refuted and the answer should be `OTHER`. Two true positives, no
-false positives.
+The check reads the whole section instead. If the framework is named anywhere in
+the section, `NOT_STATED` is wrong and the answer should be `OTHER`. Two true
+positives, no false positives.
 
 ## The prompt fix that fixed nothing
 
@@ -103,8 +104,9 @@ had been reporting remediated weaknesses correctly all along, each tagged with
 its own status. The "fix" just stopped reporting them. It also traded one error
 for another, repairing Tribal Rides and breaking JAAG.
 
-Both prompts are in the repository. An instruction that looks obviously correct,
-measures as no better, and quietly removes information seemed worth recording.
+Both prompts are in the repository. An instruction that looks obviously right,
+makes no difference when you measure it, and quietly throws away information is
+worth writing down.
 
 ## The part I didn't expect
 
@@ -114,8 +116,8 @@ The deterministic layer was buggier than the model it was checking.
 - 4 harness failures that would have been scored as model defects
 - 0 citations fabricated by the model
 
-The first version of the support gate reported a 100% defect rate. Roughly 95% of
-that was its own bugs. I'd written the patterns from what I assumed audit
+The first version of the support gate reported a 100% defect rate. Roughly 95%
+of that was its own bugs. I'd written the patterns from what I assumed audit
 language sounded like, rather than from the filings:
 
 - filings assert effectiveness as "maintained effective internal control", not
@@ -133,16 +135,18 @@ The eighth was the worst, and it was in the headline. My diff compared the
 hand-labeled count of weaknesses *open at year end* against the number of
 weaknesses the extraction *listed*, which includes remediated ones carrying a
 `REMEDIATED` status. Two different definitions, compared as though they were the
-same. That one mistake produced an apparent 23% claim-error rate. The real figure
-is 10%, and the model had been right about every case I was counting against it.
+same. That one mistake produced an apparent 23% claim-error rate. The real
+figure is 10%, and the model had been right about every case I was counting
+against it.
 
 I built a whole gate on top of that misreading before checking it. The gate
 scored zero true positives and one false positive. I reverted it rather than
 tuning it, because tuning it would have been fitting noise.
 
-A verification layer feels authoritative in a way the model doesn't. Mine was
-wrong far more often than the model was, and every alarming number it produced
-turned out to be worth less than the five minutes it took to check the checker.
+Checking code feels more trustworthy than a model, because you wrote it and you
+can read it. Mine was wrong far more often than the model was. Every scary
+number it gave me turned out to be worth less than the five minutes it took to
+go and check whether the checker was right.
 
 ## How it works
 
@@ -150,8 +154,8 @@ turned out to be worth less than the five minutes it took to check the checker.
    Section boundaries are harder than they look. The table of contents matches
    first, auditors cross-reference the item from inside their own reports, and
    amendments name it in an explanatory note before the section itself.
-2. Extract a typed record per filing. Pydantic v2, enum-constrained, with a
-   span-level citation on every field.
+2. Extract one typed record per filing. Pydantic v2, fixed sets of allowed
+   values, and a citation on every field.
 3. Verify. No gate calls an LLM.
    - *span resolution*: do the offsets resolve, does the quote match exactly
    - *support*: does the cited passage state the claim, or only discuss the same
@@ -177,16 +181,17 @@ uv run python -m citecheck.cli extract --mode quote --prompt 1
 uv run python -m citecheck.cli report --fail-under 0.90
 ```
 
-`extract` is resumable and enforces a single instance, after two processes
-silently interleaved an entire run. `--repair N` feeds gate findings back to the
-model and retries. Exit codes: `0` pass, `1` below threshold, `2` usage error,
-`3` no data.
+`extract` picks up where it left off and refuses to start twice, after two runs
+once wrote over each other without any error. `--repair N` feeds gate findings
+back to the model and retries. Exit codes: `0` pass, `1` below threshold, `2`
+usage error, `3` no data.
 
-CI runs on every push and needs no secrets. The corpus text, both extraction runs
-and the hand labels are committed, so `report` reproduces these numbers offline.
-It fails the build when citation integrity drops, which catches a gate regression
-and not only a model one. A second workflow re-extracts a sample against the
-labels to catch model drift. That one costs money, so it runs on manual trigger:
+CI runs on every push and needs no secrets. The corpus text, both extraction
+runs and the hand labels are committed, so `report` reproduces these numbers
+offline. It fails the build when citation integrity drops, which catches a gate
+regression and not only a model one. A second workflow re-extracts a sample
+against the labels to catch model drift. That one costs money, so it runs on
+manual trigger:
 
 ```bash
 gh workflow run drift.yml -f sample=5
@@ -203,7 +208,7 @@ gh workflow run drift.yml -f sample=5
   The rules I applied are in [`docs/audit-notes.md`](docs/audit-notes.md),
   including every filing that caught me out, so you can check my reasoning
   instead of taking it on trust.
-- Two filings don't contain their own answer. CubeSmart incorporates management's
-  ICFR report by reference to page F-2, and MARKY never states a
-  disclosure-controls conclusion at all. No extraction system can be right about
-  those from the assigned scope. I labeled them by inference and said so.
+- Two filings don't contain their own answer. CubeSmart points to page F-2 for
+  management's ICFR report, and MARKY never states a disclosure-controls
+  conclusion at all. Nothing can get those right from the section it was handed.
+  I labeled them by inference and said so.

@@ -105,8 +105,8 @@ report; the reasons vary and all count the same: smaller reporting company,
 non-accelerated filer, emerging growth company, the permanent Section 404(b)
 exemption, or "rules of the SEC that permit us to provide only management's
 report". ABSENT is no mention of an auditor, attestation, accounting firm or
-opinion anywhere in the section (Tribal Rides, INKY, MARKY). Silence is the more
-interesting case for a citation tool, because there is nothing to cite.
+opinion anywhere in the section (Tribal Rides, INKY, MARKY). Silence is the
+harder case for a citation tool, because there's nothing to point at.
 
 ## Traps I actually hit
 
@@ -201,14 +201,13 @@ Three factual errors across 30 filings. Two are the same one.
 
 The repeating error is the undated framework. When a filing cites COSO's
 *Internal Control - Integrated Framework* without saying 1992 or 2013, the model
-reports that no framework was stated. That's not a small difference: the
-company did name a framework, and reporting otherwise erases a disclosure it
-made.
+reports that no framework was stated. That's not a small difference. The company
+did name a framework, and saying otherwise wipes out a disclosure it made.
 
 An earlier version of these notes claimed eight errors, almost all of them
-material weakness counts. That was wrong, and the mistake is worth recording here.
-The comparison had been checking the hand-labeled count of weaknesses *open at
-year end* against the number of weaknesses the model *listed*, which includes
-remediated ones, each correctly tagged REMEDIATED. Two different definitions of
-"count". The model had identified every remediated weakness correctly; the
-scoring was what got it wrong.
+material weakness counts. That was wrong, and the mistake is worth recording
+here. The comparison had been checking the hand-labeled count of weaknesses
+*open at year end* against the number of weaknesses the model *listed*, which
+includes remediated ones, each correctly tagged REMEDIATED. Two different
+definitions of "count". The model had identified every remediated weakness
+correctly; the scoring was what got it wrong.
