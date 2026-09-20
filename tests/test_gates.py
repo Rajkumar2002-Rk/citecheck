@@ -152,3 +152,23 @@ def test_not_effective_without_any_weakness_is_flagged():
         value=False, citation=QuoteCitation(quote="was not effective")))
     findings = gate_consistency(record).findings
     assert any(f.field == "material_weaknesses" for f in findings)
+
+
+def test_not_stated_is_refuted_by_the_whole_section_not_just_the_span(avdx_9a):
+    # The observed failure: a filing names COSO's framework without a year, and
+    # the model reports that no framework is stated at all. That collapses
+    # "named but undated" into "not named" and erases a disclosure the company
+    # made. The right answer is OTHER.
+    #
+    # The citation here points at a passage that does NOT mention COSO, so a
+    # span-only check passes it. An absence claim can only be refuted by the
+    # whole section.
+    quote = "our disclosure controls and procedures were effective"
+    assert quote in avdx_9a
+    assert "COSO" not in quote
+    record = quote_record(control_framework=Cited[ControlFramework, QuoteCitation](
+        value=ControlFramework.NOT_STATED, citation=QuoteCitation(quote=quote)))
+    result = run_gates(record, avdx_9a, mode="quote")
+    findings = [f for f in result.findings if f.field == "control_framework"]
+    assert findings, "NOT_STATED must be refuted by a framework named anywhere in the section"
+    assert "OTHER, not NOT_STATED" in findings[0].message

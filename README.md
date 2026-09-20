@@ -12,42 +12,58 @@ It didn't fabricate anything. The interesting failure was somewhere else.
 Over 30 filings and 178 cited fields, asking Claude Opus 5 to extract audit
 conclusions with a citation on every field:
 
-**96.6% of citations were valid. 23% of filings contained a claim that was
-wrong and that every citation check passed.**
+**96.6% of citations were valid. 3 of 30 filings still carried a factual error,
+and 2 of those passed every citation check.**
 
-Those two numbers are the whole point. Citation integrity and claim correctness
-are different properties, and verifying the first tells you very little about
-the second.
+Citation integrity and claim correctness are different properties. Verifying the
+first tells you very little about the second, which is the entire point of the
+exercise.
 
-## What the model got wrong
+## What the model actually got wrong
 
-Almost every wrong claim was the same field: how many material weaknesses the
-company disclosed.
+Three errors across 30 filings. Two of them are the same failure:
 
-| filing | hand-labeled | model |
+| filing | hand-labeled | model | |
+|---|---|---|---|
+| Netlist | `OTHER` | `NOT_STATED` | framework named without a year |
+| JAAG Enterprises | `OTHER` | `NOT_STATED` | same, under the v2 prompt |
+| Tribal Rides | 3 | 1 | three weaknesses in one sentence, under-counted |
+| Trendmaker | 1 | 2 | counted "failed to stay current in SEC filings" as a weakness |
+
+The repeating one is worth naming. Some filings cite COSO's *Internal Control -
+Integrated Framework* without saying which version, 1992 or 2013. The model
+reports that **no framework was stated at all**. It collapses "named but
+ambiguous" into "not named", which in audit terms erases a disclosure the
+company actually made.
+
+It is the only error that reproduced across prompt versions, and it is now
+caught deterministically. `NOT_STATED` is a claim about the *absence* of
+something, and an absence cannot be verified by reading the one passage the
+model chose to cite. The check reads the whole section instead: if the framework
+is named anywhere, `NOT_STATED` is refuted and the answer should be `OTHER`.
+Two true positives, no false positives.
+
+## A prompt fix that fixed nothing
+
+Before the labels existed, the apparent failure was that the model counted
+material weaknesses the filing said were already remediated. So I added one
+instruction telling it to count only weaknesses open at the fiscal year end, and
+re-ran the whole corpus.
+
+| | baseline | + remediation rule |
 |---|---|---|
-| Alta Equipment Group | 1 | 3 |
-| Empire State Realty Trust | 0 | 1 |
-| FlexShopper | 1 | 2 |
-| Titan Pharmaceuticals | 0 | 1 |
-| Video Display Corp | 0 | 1 |
-| Trendmaker | 1 | 2 |
-| Tribal Rides International | 3 | 1 |
+| citation integrity | **96.6%** | 96.4% |
+| filings with a wrong claim | **3** | **3** |
+| remediated weaknesses reported | **7** | **0** |
 
-Six of the seven are over-counts, and five of those are the same mistake: the
-filing says a weakness was **remediated as of the fiscal year end**, and the
-model counted it anyway.
+No improvement in accuracy, and it silently deleted a category of disclosure.
+The baseline had been reporting remediated weaknesses correctly all along, each
+tagged with its own status; the "fix" simply stopped reporting them. It also
+traded one error for another, repairing Tribal Rides and breaking JAAG.
 
-That distinction is not cosmetic. A remediated material weakness is a company
-reporting that it fixed a problem. An open one means internal control over
-financial reporting is ineffective and the auditor issues an adverse opinion.
-They are close to opposite facts, and they sit two sentences apart in the same
-paragraph.
-
-Every one of these passed the citation gates. The model quoted the remediation
-language accurately and still counted the weakness as open. There is no
-provenance check that catches this, because nothing about the provenance is
-wrong.
+Both prompts are in the repository. A targeted instruction that looks obviously
+correct, measures as no better, and quietly removes information seemed worth
+recording.
 
 ## Offsets, and what they cost
 
@@ -80,9 +96,21 @@ character spans, have the model quote the text and find it yourself.
 
 The deterministic layer was buggier than the model it was checking.
 
-- **7** distinct false-positive classes in the gates, each found and fixed
+- **8** defects in the verification layer, each found and fixed
 - **4** harness failures that would have been recorded as model defects
 - **0** citations fabricated by the model
+
+The eighth one was the worst, and it was in the headline. My diff compared the
+hand-labeled count of weaknesses *open at year end* against the number of
+weaknesses the extraction *listed*, which includes remediated ones carrying a
+`REMEDIATED` status. Two different definitions, compared as though identical.
+That single mistake produced an apparent 23% claim-error rate. The real figure
+is 10%, and the model had been right about every one of the cases I was counting
+against it.
+
+I built a whole gate on top of that misreading before checking it. The gate
+scored zero true positives and one false positive, and has been reverted rather
+than tuned, because tuning it would have been fitting noise.
 
 The first version of the support gate reported a 100% defect rate. Roughly 95%
 of that was its own bugs. I had written the patterns from what I assumed audit
@@ -100,8 +128,10 @@ That last one, a single missing `\s+`, produced a third of the findings at one
 point. Each fix is pinned in `tests/test_captured_failures.py` against the
 filing text that caused it.
 
-I mention this because a verification layer that reports a scary number is not
-automatically right, and mine was wrong far more often than the model was.
+I mention this because a verification layer feels authoritative in a way the
+model does not, and mine was wrong far more often than the model was. Every
+scary number it produced was worth less than the five minutes it took to check
+whether the checker was right.
 
 ## How it works
 

@@ -33,12 +33,12 @@ class Attempt:
 
 
 def extract(client: anthropic.Anthropic, text: str, *, mode: str,
-            repair: str | None = None) -> Attempt:
+            repair: str | None = None, version: int = 1) -> Attempt:
     """One extraction call. `repair` carries gate feedback on a retry."""
     if mode not in MODES:
         raise ValueError(f"unknown mode {mode!r}; expected one of {sorted(MODES)}")
 
-    prompt = build_user_prompt(text, mode=mode)
+    prompt = build_user_prompt(text, mode=mode, version=version)
     if repair:
         prompt += (
             "\n\nA previous attempt failed deterministic verification:\n"

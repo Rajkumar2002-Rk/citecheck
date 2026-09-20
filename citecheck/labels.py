@@ -13,7 +13,7 @@ from dataclasses import dataclass
 from pathlib import Path
 
 from .corpus import DATA, MANIFEST, TEXT
-from .schema import AuditorOpinion, ControlFramework
+from .schema import AuditorOpinion, ControlFramework, RemediationStatus
 
 LABELS = DATA / "labels.csv"
 
@@ -107,9 +107,20 @@ def diff(record, label: dict) -> list[Mismatch]:
     raw_count = (label.get("material_weakness_count") or "").strip()
     if raw_count.isdigit():
         expected_count = int(raw_count)
-        actual_count = len(record.material_weaknesses)
-        if actual_count != expected_count:
-            out.append(Mismatch("material_weakness_count", expected_count, actual_count))
+        # The label counts weaknesses OPEN at fiscal year end. The extraction
+        # lists every weakness the filing discusses, each carrying its own
+        # remediation status, so the comparable number excludes the ones the
+        # model itself marked remediated. Comparing against the raw list length
+        # counts a correctly-identified remediated weakness as a wrong claim --
+        # which is what an earlier version of this function did, and it
+        # manufactured most of the apparent claim errors.
+        open_weaknesses = [
+            w for w in record.material_weaknesses
+            if w.remediation_status.value is not RemediationStatus.REMEDIATED
+        ]
+        if len(open_weaknesses) != expected_count:
+            out.append(Mismatch("material_weakness_count", expected_count,
+                                len(open_weaknesses)))
 
     raw_framework = (label.get("control_framework") or "").strip().upper()
     if raw_framework in ControlFramework.__members__:

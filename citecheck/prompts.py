@@ -45,8 +45,20 @@ Every field must carry a citation containing:
 The quote must appear verbatim in the source. The quoted passage must itself \
 state the fact you are reporting -- not merely discuss the same topic."""
 
+# v2 adds one instruction, targeting the single failure the hand-labeled ground
+# truth exposed: the model counts material weaknesses the filing says were
+# already remediated. Everything else is identical to v1, so the delta between
+# the two runs measures that instruction and nothing else.
+REMEDIATION_RULE = """\
+
+One rule about material weaknesses. Report only those that remained \
+unremediated as of the fiscal year end covered by this filing. If the text \
+states a weakness was remediated as of that date, or that it no longer exists, \
+do not include it. Weaknesses first disclosed in an earlier period still count \
+if the filing says they continue to exist."""
+
 USER = """\
-{citation_contract}
+{citation_contract}{extra_rules}
 
 SOURCE TEXT (Item 9A, {length} characters, offset 0 is the first character below):
 <source>
@@ -56,6 +68,10 @@ SOURCE TEXT (Item 9A, {length} characters, offset 0 is the first character below
 Extract the structured record."""
 
 
-def build_user_prompt(text: str, *, mode: str) -> str:
+def build_user_prompt(text: str, *, mode: str, version: int = 1) -> str:
+    if version not in (1, 2):
+        raise ValueError(f"unknown prompt version {version!r}")
     contract = CITATION_SPAN if mode == "span" else CITATION_QUOTE
-    return USER.format(citation_contract=contract, length=len(text), text=text)
+    extra = REMEDIATION_RULE if version == 2 else ""
+    return USER.format(citation_contract=contract, extra_rules=extra,
+                       length=len(text), text=text)
