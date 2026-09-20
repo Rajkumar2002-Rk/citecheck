@@ -53,6 +53,29 @@ the paragraph every time.
 Quick check: if the word **"weaknesses"** (plural) never appears in the section,
 the answer is 0 or 1 and there is nothing to hunt for.
 
+## Naming the control framework
+
+Almost every filing uses COSO's *Internal Control - Integrated Framework*. What
+varies is whether they tell you which version. Seven spellings seen in 30
+filings:
+
+| how it appears | answer |
+|---|---|
+| "Integrated Framework (2013)" | COSO_2013 |
+| "(2013 Framework)" / "(2013 framework)" | COSO_2013 |
+| "issued by ... the Treadway Commission **in 2013**" | COSO_2013 |
+| "("COSO - 2013")" / "("COSO-2013")" | COSO_2013 |
+| "(commonly referred to as the "2013 COSO" framework)" | COSO_2013 |
+| named once without a year, then again **with** it | COSO_2013 |
+| COSO framework named, **no year anywhere** | OTHER |
+| no framework named at all | NOT_STATED |
+
+Two traps here. AEI names the framework twice and only the second mention
+carries "(2013)", so stopping at the first occurrence gives the wrong answer.
+And **OTHER is not the same as NOT_STATED**: OTHER means a framework is named
+but you cannot pin the version (JAAG, Netlist); NOT_STATED means no framework is
+named at all (CubeSmart).
+
 ## Auditor opinion, in order
 
 1. Filing says the auditor is not required to report, or management's report was
@@ -62,9 +85,28 @@ the answer is 0 or 1 and there is nothing to hunt for.
      **UNQUALIFIED**
    - "…has not maintained effective internal control…" → **ADVERSE**
      (note: the adverse sentence rarely contains the word "adverse")
-3. The report is mentioned but printed elsewhere, e.g. "in the F-pages" →
+3. The report is mentioned but printed elsewhere, e.g. "included in Part II,
+   Item 8", "appearing on page F-2", "which follows below" →
    **CROSS_REFERENCED**
 4. No mention of an auditor anywhere → **ABSENT**
+
+Two distinctions that caught me:
+
+**CROSS_REFERENCED vs a real opinion.** The test is not where the report is
+printed, it is whether Item 9A tells you what it concluded. Acme United says the
+report "expresses an unqualified opinion" and then points elsewhere for the text
+— you can answer, so answer UNQUALIFIED. Mayville says only that Deloitte "has
+issued an attestation report ... which follows below" and never says what it
+found, so CROSS_REFERENCED.
+
+**NOT_REQUIRED vs ABSENT.** Both mean no opinion, but one is an explanation and
+the other is a silence. NOT_REQUIRED is the filing telling you why there is no
+report; the reasons vary and all count the same: smaller reporting company,
+non-accelerated filer, emerging growth company, the permanent Section 404(b)
+exemption, or "rules of the SEC that permit us to provide only management's
+report". ABSENT is no mention of an auditor, attestation, accounting firm or
+opinion anywhere in the section (Tribal Rides, INKY, MARKY). Silence is the more
+interesting case for a citation tool, because there is nothing to cite.
 
 ## Traps I actually hit
 
@@ -106,6 +148,31 @@ the answer is 0 or 1 and there is nothing to hunt for.
   *"based on our audit **and the report of KPMG LLP**"* — KPMG audited a
   subsidiary that is 39% of revenue. The auditor of record is Deloitte; the
   opinion depends on another firm's report that is not in the document.
+- **Tribal Rides** — three weaknesses in one sentence: *"deficiencies involving
+  lack of segregation of duties, lack of governance/oversight, and lack of
+  internal control documentation that we believe to be material weaknesses."*
+  The filing then refers to "this material weaknesses" and "the material
+  weakness" in the singular throughout. Answer is 3.
+- **INKY** and **MARKY** — weaknesses given as a numbered list, 1 through 4 and
+  1 through 3. The easiest counts in the set once you find the list. INKY also
+  dates its ICFR conclusion "November 31, 2022", a day that does not exist.
+- **Acme United** — the attestation report lives elsewhere, but Item 9A states
+  its outcome outright: *"which expresses an unqualified opinion"*. Answer the
+  question when the section answers it.
+- **CompX International** — the disclosure-controls conclusion is the last
+  sentence of a 200-word paragraph that spends the first 190 defining what
+  disclosure controls are. Nothing is hidden; it is just buried.
+- **WidFit** — disclosure controls not effective, ICFR effective, and no material
+  weakness disclosed anywhere. Legal, since disclosure controls are broader than
+  ICFR, but unusual. The sentence itself reads *"are designed at a reasonable
+  assurance level and are not effective"*, which looks like a template where
+  both branches survived editing.
+- **Annovis Bio** — exempt as an **emerging growth company**, a fourth distinct
+  reason for NOT_REQUIRED.
+- **MARKY** — Item 9A defines disclosure controls and then never states a
+  conclusion about them. The answer is not in the section. Worth knowing because
+  the model, asked for it anyway, cited the *ICFR* conclusion instead — it
+  reached for the nearest adjacent sentence when the required one did not exist.
 
 ## Habits that prevent most errors
 
@@ -116,14 +183,31 @@ the answer is 0 or 1 and there is nothing to hunt for.
 3. **Read to the end of the paragraph.** Filings pack several weaknesses into
    one unbroken block with no bullets.
 4. **A deficiency is not a material weakness.** Neither is a late filing.
+5. **Scan for the word "concluded".** Every filing has it, and it sits exactly
+   where the answer is. Faster than looking for headings, which vary.
+6. **Check every mention of "Framework".** The version may only appear on the
+   second one.
 
-## Two extraction errors the labels caught
+## What the labels caught
 
-Both the same failure: the model counted a material weakness the filing said had
-been remediated.
+Across 30 filings, almost every wrong claim the model made was the same field:
+the number of material weaknesses.
 
-- SkyWater: model 2, correct 1.
-- Empire State Realty: model 1, correct 0.
+| filing | labeled | model |
+|---|---|---|
+| Alta Equipment Group | 1 | 3 |
+| Empire State Realty Trust | 0 | 1 |
+| FlexShopper | 1 | 2 |
+| Titan Pharmaceuticals | 0 | 1 |
+| Video Display Corp | 0 | 1 |
+| Trendmaker | 1 | 2 |
+| SkyWater Technology | 1 | 2 |
+| Tribal Rides International | 3 | 1 |
 
-A remediated weakness and a live one have opposite consequences in an audit, so
-conflating them is not a rounding error.
+Six of seven over-counts, and five of those are one mistake: the filing says a
+weakness was remediated as of the fiscal year end and the model counted it
+anyway. The one under-count is Tribal Rides, the three-in-one-sentence case.
+
+Every one of these passed the citation checks. The model quoted the remediation
+language correctly and still counted the weakness as open, which is why no
+amount of provenance verification catches it.
