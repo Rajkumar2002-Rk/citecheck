@@ -190,24 +190,25 @@ interesting case for a citation tool, because there is nothing to cite.
 
 ## What the labels caught
 
-Across 30 filings, almost every wrong claim the model made was the same field:
-the number of material weaknesses.
+Three factual errors across 30 filings. Two are the same one.
 
-| filing | labeled | model |
-|---|---|---|
-| Alta Equipment Group | 1 | 3 |
-| Empire State Realty Trust | 0 | 1 |
-| FlexShopper | 1 | 2 |
-| Titan Pharmaceuticals | 0 | 1 |
-| Video Display Corp | 0 | 1 |
-| Trendmaker | 1 | 2 |
-| SkyWater Technology | 1 | 2 |
-| Tribal Rides International | 3 | 1 |
+| filing | labeled | model | |
+|---|---|---|---|
+| Netlist | OTHER | NOT_STATED | COSO framework named, no year given |
+| JAAG Enterprises | OTHER | NOT_STATED | same, under a later prompt version |
+| Tribal Rides | 3 | 1 | three weaknesses in one sentence |
+| Trendmaker | 1 | 2 | counted late SEC filings as a weakness |
 
-Six of seven over-counts, and five of those are one mistake: the filing says a
-weakness was remediated as of the fiscal year end and the model counted it
-anyway. The one under-count is Tribal Rides, the three-in-one-sentence case.
+The repeating error is the undated framework. When a filing cites COSO's
+*Internal Control - Integrated Framework* without saying 1992 or 2013, the model
+reports that no framework was stated. That is not a small difference: the
+company did name a framework, and reporting otherwise erases a disclosure it
+made.
 
-Every one of these passed the citation checks. The model quoted the remediation
-language correctly and still counted the weakness as open, which is why no
-amount of provenance verification catches it.
+An earlier version of these notes claimed eight errors, almost all of them
+material weakness counts. That was wrong, and the mistake is worth recording.
+The comparison had been checking the hand-labeled count of weaknesses *open at
+year end* against the number of weaknesses the model *listed* — which includes
+remediated ones, each correctly tagged REMEDIATED. Two different definitions of
+"count". The model had identified every remediated weakness correctly; the
+scoring was what got it wrong.
