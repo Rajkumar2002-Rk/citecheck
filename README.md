@@ -139,6 +139,18 @@ uv run python -m citecheck.cli report --fail-under 0.90
 
 Exit codes: `0` pass, `1` below threshold, `2` usage error, `3` no data.
 
+CI runs on every push and needs no secrets, because the corpus text, the saved
+extractions and the labels are all committed. It fails the build if citation
+integrity on the committed run drops below threshold, which catches a gate
+regression and not only a model one.
+
+A second workflow re-extracts a sample against the labels to catch model drift.
+That one costs money, so it runs on manual trigger rather than a schedule:
+
+```bash
+gh workflow run drift.yml -f sample=5
+```
+
 ## What this does not prove
 
 - **n = 30, one model, one run per filing.** Run-to-run variance is real. The

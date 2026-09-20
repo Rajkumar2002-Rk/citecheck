@@ -6,9 +6,12 @@ name: drift
 #
 # It exists to catch things the offline tests cannot -- the model's behaviour
 # changing under the same prompt, or a prompt edit quietly regressing quality.
+#
+# Run by hand rather than on a schedule. A standing weekly cron on a personal
+# project is a standing charge against a personal API budget, and the check is
+# only meaningful when someone reads the result. Trigger it from the Actions
+# tab, or with: gh workflow run drift.yml -f sample=5
 on:
-  schedule:
-    - cron: "0 7 * * 1"   # Mondays 07:00 UTC
   workflow_dispatch:
     inputs:
       sample:
