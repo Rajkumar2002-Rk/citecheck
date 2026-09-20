@@ -83,6 +83,39 @@ the answer is 0 or 1 and there is nothing to hunt for.
   COSO_2013.
 - **SkyWater** — a page number (`107`) sits inside a sentence, splitting the
   conclusion in half.
+- **Trendmaker** — the same weakness described twice, first plural then
+  singular: *"identified material **weaknesses** related to the lack of requisite
+  U.S. GAAP expertise of our Chief Financial Officer and our internal
+  bookkeeper. This lack of expertise ... **constitutes a material weakness**."*
+  Two people lacking one skill is one weakness. Answer is 1, not 2.
+  The same filing then concludes ICFR ineffective *"due to the identified
+  material weakness **and internal control deficiency** ... and the fact that the
+  Company has failed to stay current in the filing of required periodic
+  reports."* Only the first of those three is a material weakness — a
+  **deficiency is a lower rung on the severity ladder**, and late filings are a
+  consequence, not a control failure.
+- **Titan Pharmaceuticals** — three paragraphs recounting last year's failure
+  before stating this year's result. The sentence reading "disclosure controls
+  and procedures ... were not effective" is dated **December 31, 2023** in a
+  FY2024 filing. The current-year conclusion is in the opening paragraph and
+  says effective.
+- **Video Display** — fiscal year ends **February 28**, not December 31. The
+  "not effective" conclusion belongs to the quarter ended November 30, and the
+  weakness was remediated in Q4. Always read the date attached to a conclusion.
+- **Endeavor Group** — two audit firms. Deloitte signs the opinion, but it reads
+  *"based on our audit **and the report of KPMG LLP**"* — KPMG audited a
+  subsidiary that is 39% of revenue. The auditor of record is Deloitte; the
+  opinion depends on another firm's report that is not in the document.
+
+## Habits that prevent most errors
+
+1. **Check the date on every conclusion.** A filing narrates last year before
+   stating this year. If the sentence names the prior year end, it is history.
+2. **Search for "weaknesses" plural.** If it never appears, the answer is 0 or 1
+   and there is nothing hidden to hunt for.
+3. **Read to the end of the paragraph.** Filings pack several weaknesses into
+   one unbroken block with no bullets.
+4. **A deficiency is not a material weakness.** Neither is a late filing.
 
 ## Two extraction errors the labels caught
 
