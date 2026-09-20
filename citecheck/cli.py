@@ -100,6 +100,13 @@ def show(
         console.print(kept + "\n")
 
 
+# Exit codes, mirroring medeval-harness so CI can branch on them.
+EXIT_OK = 0
+EXIT_BELOW_THRESHOLD = 1
+EXIT_USAGE = 2
+EXIT_NO_DATA = 3
+
+
 @app.command()
 def report(
     fail_under: float = typer.Option(
