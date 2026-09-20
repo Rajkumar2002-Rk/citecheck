@@ -1,0 +1,77 @@
+Item 9A. Controls and
+Procedures
+
+The Company is responsible
+for establishing and maintaining a system of disclosure controls and procedures (as defined in Rule 13a-15(e) and 15d-15(e) under the
+Exchange Act) that is designed to ensure that information required to be disclosed by us in the reports that we file or submit under the
+Exchange Act is recorded, processed, summarized and reported, within the time periods specified in the Commission's rules and forms.
+Disclosure controls and procedures include, without limitation, controls and procedures designed to ensure that information required to
+be disclosed by an issuer in the reports that it files or submits under the Exchange Act is accumulated and communicated to the issuer's
+management, including its principal executive officer or officers and principal financial officer or officers, or persons performing similar
+functions, as appropriate to allow timely decisions regarding required disclosure.
+
+An assessment was conducted
+with the participation of our principal executive and principal financial officer of the effectiveness of the design and operation of
+our disclosure controls and procedures as of November 30, 2022. Based on that evaluation, our management concluded that our disclosure
+controls and procedures were not effective as of such date to ensure that information required to be disclosed in the reports that we
+file or submit under the Exchange Act, is recorded, processed, summarized and reported within the time periods specified in SEC rules
+and forms.
+
+Management's Report
+on Internal Control over Financial Reporting
+
+Management is responsible
+for establishing and maintaining adequate internal control over financial reporting (as defined in Exchange Act Rule 13a-15(f)). The Company's
+internal control over financial reporting is a process designed to provide reasonable assurance regarding the reliability of financial
+reporting and the preparation of financial statements for external purposes in accordance with accounting principles generally accepted
+in the United States of America. Because of its inherent limitations, internal control over financial reporting may not prevent or detect
+misstatements. Also, projections of any evaluation of effectiveness to future periods are subject to the risk that controls may become
+inadequate because of changes in conditions, or that the degree of compliance with the policies or procedures may deteriorate. Under the
+supervision and with the participation of management, including the Chief Executive Officer and Chief Financial Officer, the Company conducted
+an evaluation of the effectiveness of the Company's internal control over financial reporting as of November 30, 2022, using the
+criteria established in "Internal Control - Integrated Framework" issued by the Committee of Sponsoring Organizations of the
+Treadway Commission ("COSO - 2013").
+
+A material weakness is a
+deficiency, or combination of deficiencies, in internal control over financial reporting, such that there is a reasonable possibility
+that a material misstatement of the Company's annual or interim financial statements will not be prevented or detected on a timely
+basis. In its assessment of the effectiveness of internal control over financial reporting as of November 30, 2022, the Company determined
+that there were control deficiencies that constituted material weaknesses, as described below.
+
+1.
+We do not have an Audit Committee - While not being legally obligated
+to have an audit committee, it is the management's view that such a committee, including a financial expert member, is an utmost
+important entity level control over the Company's financial statements. Currently the Board of Directors acts in the capacity of
+the Audit Committee, and does not include a member that is considered to be independent of management to provide the necessary oversight
+over management's activities.
+
+2.
+We did not maintain appropriate cash controls - As of November 30,
+2022, the Company has not maintained sufficient internal controls over financial reporting for cash, including failure to segregate cash
+handling and accounting functions, and did not require dual signatures on the Company's bank accounts. Alternatively, the effects
+of poor cash controls were mitigated by the fact that the Company had limited transactions in its bank accounts.
+
+3.
+We did not implement appropriate information technology controls -
+As at November 30, 2022, the Company retains copies of all financial data and material agreements; however, there is no formal procedure
+or evidence of normal backup of the Company's data or off-site storage of data in the event of theft, misplacement, or loss due
+to unmitigated factors.
+
+4.
+The Company
+lacks segregation of duties.
+
+Accordingly, the Company
+concluded that these control deficiencies resulted in a reasonable possibility that a material misstatement of the annual or interim financial
+statements will not be prevented or detected on a timely basis by the company's internal controls.
+
+As a result of the material
+weaknesses described above, management has concluded that the Company did not maintain effective internal control over financial reporting
+as of November 31, 2022 based on criteria established in Internal Control- Integrated Framework issued by COSO.
+
+Changes in Internal Controls
+over Financial Reporting
+
+There has been no change
+in our internal control over financial reporting occurred during the year ended November 30, 2022, that has materially affected, or is
+reasonably likely to materially affect, our internal control over financial reporting.

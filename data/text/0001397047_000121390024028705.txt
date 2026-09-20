@@ -1,0 +1,105 @@
+Item
+9A. Controls and Procedures.
+
+Evaluation
+of Disclosure Controls and Procedures
+
+We
+maintain disclosure controls and procedures, as such term is defined in Rules 13a-15(e) and 15d-15(e) of the Securities Exchange Act
+of 1934, as amended (the "Exchange Act"), that are designed to ensure that information required to be disclosed in the reports
+filed or submitted under the Exchange Act, is recorded, processed, summarized and reported within the time periods specified by the Commission's
+rules and forms. Disclosure controls and procedures include controls and procedures designed to ensure that information required to be
+disclosed in our reports filed or submitted under the Exchange Act are properly recorded, processed, summarized and reported within the
+time periods required by the Commission's rules and forms.
+
+We
+carried out an evaluation, under the supervision and with the participation of our management, including our Chief Executive Officer
+and our Chief Financial Officer, of the effectiveness of the design and operation of these disclosure controls and procedures, as such
+term is defined in Exchange Act Rule 13a-15(e) and 15d-15(e), as of December 31, 2023. Based on this evaluation, our Chief Executive
+Officer and Chief Financial Officer concluded that our disclosure controls and procedures were not effective as of December 31, 2023,
+the end of the period covered by this Annual Report on Form 10-K, due to the material weakness described below.
+
+In
+connection with our December 31, 2022 financial statements, we identified a material weakness in our internal control over financial
+reporting. This material weakness was due to a lack of effective controls over certain account analysis and accounting judgments related
+to the complex and ambiguous concepts associated with business combination accounting. The business combination that led to the material
+weakness was a unique, one-time transaction, where the initial intangible assets initially identified by the Company were not accurate.
+
+As
+of December 31, 2023, the material weakness described above was remediated as management of the Company increased the use of external
+consultants.
+
+Management's
+Annual Report on Internal Control Over Financial Reporting
+
+Our
+management is responsible for establishing and maintaining adequate internal control over financial reporting (as defined in Rule 13a-15(f)
+under the Exchange Act). Our internal control over financial reporting is a process designed to provide reasonable assurance regarding
+the reliability of financial reporting and the preparation of financial statements for external purposes in accordance with accounting
+principles generally accepted in the United States. All control systems contain inherent limitations, no matter how well designed. As
+a result, our management acknowledges that its internal controls over financial reporting may not prevent or detect misstatements. Therefore,
+even those systems determined to be effective can provide only reasonable assurance of achieving their control objectives.
+
+Our
+management, with the participation of our Chief Executive Officer and our Chief Financial Officer, evaluated the effectiveness of our
+internal control over financial reporting as of December 31, 2023. In making this assessment, management used the criteria established
+by the Committee of Sponsoring Organizations of the Treadway Commission in Internal Control - Integrated Framework (2013). Based
+on this evaluation, our management concluded that, as of December 31, 2023, our internal control over financial reporting was not
+effective, due to the material weakness described below.
+
+A
+material weakness is a deficiency, or combination of deficiencies, in internal control over financial reporting, such that there is a
+reasonable possibility that a material misstatement of the Company's annual or interim financial statements will not be prevented
+or detected on a timely basis. The design and operating effectiveness of our controls were inadequate to ensure that all complex accounting
+matters are properly accounted for and reviewed in a timely manner.
+
+During
+the years ended December 31, 2023, and 2022, we identified a material weakness in our internal control over financial reporting.
+
+29
+
+In
+connection with our December 31, 2022 financial statements, we identified a material weakness in our internal control over financial
+reporting. This material weakness was due to a lack of effective controls over certain account analysis and accounting judgments related
+to the complex and ambiguous concepts associated with business combination accounting. The business combination that led to the material
+weakness is a unique, one-time transaction, where the initial intangible assets initially identified by the Company were not accurate.
+As of December 31, 2023, this material weakness was remediated as management of the Company increased the use of external consultants.
+
+In
+connection with our December 31, 2023 financial statements, we identified a material weakness in our internal control over financial
+reporting. This material weakness is due to a lack of effective controls over the review of certain accounts calculations related to
+the tax provision as developed by a third-party service provider. The tax provision is a complex calculation for the Company mainly because
+there are several different state tax regulations to take into consideration, the business combination occurred in 2022, and the recent
+changes to the tax interest limitation. To remediate this material weakness, management is adding more in-depth review procedures to
+the tax provision and either changing the tax third party service provider to a well-recognized tax and audit firm or expanding the federal
+and state tax knowledge of the accounting department.
+
+Notwithstanding
+the identified material weaknesses in connection with our December 31, 2023 and December 31, 2022 financial statements, the Company believes
+the financial statements included in this Annual Report on Form 10-K fairly represent in all material respects our financial condition,
+results of operations and cash flows at and for the periods presented in accordance with accounting principles generally accepted in
+the United States of America.
+
+Changes
+in Internal Control Over Financial Reporting
+
+Richard
+House, Jr., the Company's former Chief Executive Officer and Principal Executive Officer, passed away on March 16, 2023. H. Russell
+Heiser, Jr., who was the Chief Financial Officer of the Company, was appointed by the Company's Board of Directors to become the
+Chief Executive Officer of the Company effective March 20, 2023. In such capacity, Mr. Heiser has been designated as the Principal Executive
+Officer, in addition to also being the Principal Financial and Accounting Officer of the Company.
+
+Management
+is changing the tax third party service provider to a well-recognized tax and audit firm, is adding more in-depth review procedures to
+the tax provision, and is investigating expansion of the accounting department in its ongoing remediation efforts of the material weakness
+reported by management in our Annual Report on Form 10-K for the year ended December 31, 2023.
+
+Other
+than the remediation of the material weakness in connection with our December 31, 2022 financial statements, the ongoing remediation
+efforts of the material weakness in connection with December 31, 2023, and the change in Chief Executive Officer, there were no other
+changes in the Company's internal controls over financial reporting during the year ended December 31, 2023 that have materially
+affected or are reasonably likely to materially affect the Company's internal control over financial reporting.
+
+Our
+independent auditors have not audited and are not required to audit this assessment of our internal control over financial reporting
+for the fiscal year ended December 31, 2023.

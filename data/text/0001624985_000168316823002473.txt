@@ -1,0 +1,87 @@
+ITEM 9A.
+CONTROLS AND PROCEDURES.
+
+Disclosure Controls and Procedures
+
+We have established disclosure controls and procedures
+that are designed to ensure that information required to be disclosed in reports filed or submitted under the Securities Exchange Act
+of 1934, as amended (the "Exchange Act"), is recorded, processed, summarized and reported within the time periods
+specified in the rules and forms of the Securities and Exchange Commission and, as such, is accumulated and communicated to our Chief
+Executive Officer, Joseph Grimes who serves as our principal executive officer, and our Chief Financial Officer, Don Smith who serves
+as our principal accounting and financial officer, as appropriate, to allow timely decisions regarding required disclosure. Messrs. Grimes
+and Smith evaluated the effectiveness of our disclosure controls and procedures, as defined in Rule 13a-15(e) of the Exchange Act, as
+of December 31, 2022. Based on their evaluation, Messrs. Grimes and Smith concluded that, due to a material weakness in our internal
+control over financial reporting as described below, our disclosure controls and procedures were not effective as of December 31, 2022.
+In light of the material weakness in internal control over financial reporting, we completed substantive procedures, including validating
+the completeness and accuracy of the underlying data used for accounting prior to filing this Annual Report.
+
+These additional procedures have allowed us to conclude
+that, notwithstanding the material weakness in our internal control over financial reporting, the consolidated financial statements included
+in this report fairly present, in all material respects, our financial position, results of operations and cash flows for the periods
+presented in conformity with accounting principles generally accepted in the United States of America.
+
+Management's Report on Internal Control
+over Financial Reporting
+
+Our management is responsible for establishing and
+maintaining adequate internal control over financial reporting, as such term is defined in Exchange Act Rule 13a-15(f). Internal control
+over financial reporting is a process designed to provide reasonable assurance regarding the reliability of financial reporting and the
+preparation of financial statements for external purposes in accordance with generally accepted accounting principles.
+
+Because of its inherent limitations, internal control
+over financial reporting may not prevent or detect misstatements. Also, projections of any evaluation of effectiveness to future periods
+are subject to the risk that controls may become inadequate because of changes in conditions, or that the degree of compliance with the
+policies or procedures may deteriorate.
+
+Management conducted an evaluation of the effectiveness
+of our internal control over financial reporting as of December 31, 2022 based upon Internal Control-Integrated Framework (2013)
+issued by the Committee of Sponsoring Organizations of the Treadway Commission ("COSO").
+
+12
+
+During its evaluation, management noted certain matters
+involving internal control and its operation that we consider to be significant deficiencies or material weaknesses under standards of
+the Public Company Accounting Oversight Board ("PCAOB"). A control deficiency exists when the design or operation
+of a control does not allow management or employees, in the normal course of performing their assigned functions, to prevent or detect
+misstatements on a timely basis.
+
+A material weakness is a deficiency, or a combination
+of deficiencies, in internal control over financial reporting, such that there is a reasonable possibility that a material misstatement
+of the Company's annual or interim financial statements will not be prevented or detected on a timely basis.
+
+We noted deficiencies involving lack of segregation
+of duties, lack of governance/oversight, and lack of internal control documentation that we believe to be material weaknesses.
+
+Because of this material weaknesses, management concluded
+that we did not maintain effective internal control over financial reporting as of December 31, 2022, based on criteria described in
+Internal Control - Integrated Framework (2013) issued by COSO.
+
+Remediation of the Material Weakness
+
+We are evaluating the material weaknesses and developing
+a plan of remediation to strengthen our overall internal control over financial reporting. The remediation plan will include the creation
+and adoption of a formal policy manual specifically dealing with financial controls.
+
+We are committed to maintaining a strong internal
+control environment and we believe that these remediation efforts will represent significant improvements in our controls. Some of these
+steps will take time to be fully integrated and confirmed to be effective and sustainable. Additional controls may also be required over
+time. Until the remediation steps set forth above are fully implemented and tested, the material weakness described above will continue
+to exist.
+
+Changes in Internal Control over Financial
+Reporting
+
+There has been no change in our internal control
+over financial reporting, as defined in Rules 13a-15(f) of the Exchange Act, during our most recent fiscal quarter ended December 31,
+2022, that has materially affected, or is reasonably likely to materially affect, our internal control over financial reporting.
+
+Important Considerations
+
+The effectiveness of our disclosure controls and
+procedures and our internal control over financial reporting is subject to various inherent limitations, including cost limitations,
+judgments used in decision making, assumptions about the likelihood of future events, the soundness of our systems, the possibility of
+human error, and the risk of fraud. Moreover, projections of any evaluation of effectiveness to future periods are subject to the risk
+that controls may become inadequate because of changes in conditions and the risk that the degree of compliance with policies or procedures
+may deteriorate over time. Because of these limitations, there can be no assurance that any system of disclosure controls and procedures
+or internal control over financial reporting will be successful in preventing all errors or fraud or in making all material information
+known in a timely manner to the appropriate levels of management.

@@ -1,0 +1,28 @@
+Item 9A. Controls and Procedures.
+Evaluation of Disclosure Controls and Procedures.
+Our management, with the participation of our Chief Executive Officer and Chief Financial Officer, has evaluated the effectiveness of our disclosure controls and procedures (as such term is defined in Rules 13a-15(e) and 15d-15(e) under the Exchange Act) as of the end of the period covered by this Annual Report on Form 10-K. Management recognizes that any controls and procedures, no matter how well designed and operated, can provide only reasonable assurance of achieving their objectives and management necessarily applies its judgment in evaluating the cost benefit relationship of possible controls and procedures. Based on such evaluation, our Chief Executive Officer and Chief Financial Officer have concluded that, as of the end of the period covered by this report, as a result of the material weaknesses in our internal control, our disclosure controls and procedures were not effective to ensure that the information required to be disclosed by us in the reports that it files or submits under the Exchange Act is recorded, processed, summarized and reported within the time periods specified in SEC rules and forms, and that information required to be disclosed in the reports we file or submit under the Exchange Act is accumulated and communicated to our management, including our Chief Executive Officer and Chief Financial Officer, as our principal financial and accounting officer, to allow timely decisions regarding required disclosures.
+Identified Material Weakness
+In connection with the audit of our financial statements as of December 31, 2022 and 2021 and for the years ended December 31, 2022 and 2021, we identified a material weakness in our internal control over financial reporting. A material weakness is a deficiency, or a combination of deficiencies, in internal control over financial reporting, such that there is a reasonable possibility that a material misstatement of our annual or interim financial statements will not be prevented or detected on a timely basis. The material weakness related to the proper classification of research and development expenses, which impacted our previously issued condensed financial statements as of and for the three months ended March 31, 2022, three and six months ended June 30, 2022 and three and nine months ended September 30, 2022.
+Remediation Plan
+Our management, with the oversight of the Audit Committee of the Board of Directors, has updated our internal processes and controls to strengthen their effectiveness and developed a remediation plan which includes the following actions:
+
+●
+Enhance our review procedures over significant contracts with contract manufacturing organizations and contract research organizations;
+
+●
+Augment existing staff; and
+
+91
+
+Table of Contents
+
+●
+Strengthen the review process.
+
+We will not be able to conclude whether the actions we are taking will fully remediate the material weakness in our internal control over financial reporting until the updated controls have operated for a sufficient period of time and management has concluded, through testing, that such controls are operating effectively. We may also conclude that additional measures may be required to remediate the material weakness in our internal control over financial reporting, which may necessitate further action.
+Management's Report on Internal Control Over Financial Reporting
+Management is responsible for establishing and maintaining adequate internal control over financial reporting as defined in Rules 13a-15(f) and 15d-15(f) under the Exchange Act. Our internal control over financial reporting is a process designed to provide reasonable assurance regarding the reliability of financial reporting and the preparation of financial statements for external purposes in accordance with generally accepted accounting principles. Because of its inherent limitations, internal control over financial reporting may not prevent or detect misstatements. Also, projections of any evaluation of effectiveness to future periods are subject to the risk that controls may become inadequate because of changes in conditions, or that the degree of compliance with the policies or procedures may deteriorate.
+Management utilized the criteria established in the Internal Control - Integrated Framework (2013) issued by the Committee of Sponsoring Organizations of the Treadway Commission (COSO) to assess the effectiveness of our internal control over financial reporting as of December 31, 2022. Based on the assessment, management has concluded that, as of December 31, 2022, our internal control over financial reporting was not effective, due to the remaining material weakness in our internal control over financial reporting described above.
+As an emerging growth company, management's assessment of internal control over financial reporting was not subject to attestation by our independent registered public accounting firm.
+Changes in Internal Control Over Financial Reporting
+There was no change in our internal control over financial reporting identified in connection with the evaluation required by Rule 13a-15(d) and 15d-15(d) of the Exchange Act that occurred during the quarter ended December 31, 2022 that has materially affected, or is reasonably likely to materially affect, our internal control over financial reporting, as the material weakness relating to our internal control over financial reporting described above was identified subsequent to December 31, 2022. We are now taking actions to remediate the material weakness, which may result in changes in our internal control over financial reporting in periods subsequent to December 31, 2022.

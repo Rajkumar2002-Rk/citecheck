@@ -1,0 +1,33 @@
+ITEM 9A.
+
+CONTROLS AND PROCEDURES.
+
+Disclosure Control and Procedures
+
+Under the supervision and with the participation of our management, including our Chief Executive Officer and Interim Chief Financial Officer, we conducted an evaluation of our disclosure controls and procedures as such term is defined under Rule 13a-15(e) under the Securities Exchange Act of 1934, as amended ("Exchange Act"). Based on this evaluation, our Chief Executive Officer and Interim Chief Financial Officer concluded that because of the material weakness in our internal control over financial reporting described below, our disclosure controls and procedures were not effective as of December 31, 2022 to provide reasonable assurance that information required to be disclosed in our reports that we file or submit under the Exchange Act is recorded, processed, summarized and reported within the time periods specified in the SEC rules and forms and that such information is accumulated and communicated to our management, including our Chief Executive Officer and Interim Chief Financial Officer, as appropriate, to allow timely decisions regarding required disclosure. Management necessarily applies its judgment in assessing the costs and benefits of such disclosure controls and procedures that, by their nature, can only provide reasonable assurance regarding management's control objectives.
+
+Management has concluded that, notwithstanding the material weakness described below, the company's consolidated financial statements in this Form 10-K fairly present, in all material respects, our financial position, results of operations and cash flows as of the dates, and for the periods presented, in conformity with U.S. GAAP.
+
+Management's Report on Internal Control Over Financial Reporting
+
+Our management is responsible for establishing and maintaining adequate internal control over financial reporting (as defined in Exchange Act Rule 13a-15(f) and 15d-15(f) promulgated under the Exchange Act). Internal control over financial reporting is a process designed to provide reasonable assurance regarding the reliability of our financial reporting and the preparation of our financial statements for external purposes in accordance with accounting principles generally accepted in the United States of America. Internal control over financial reporting includes those policies and procedures that: (i) pertain to the maintenance of records that, in reasonable detail, accurately and fairly reflect our transactions and dispositions of our assets; (ii) provide reasonable assurance that transactions are recorded as necessary for preparation of our financial statements in accordance with generally accepted accounting principles; (iii) provide reasonable assurance that our receipts and expenditures are made in accordance with management authorization; and (iv) provide reasonable assurance regarding prevention or timely detection of unauthorized acquisition, use or disposition of our assets that could have a material effect on the financial statements.
+
+Because of its inherent limitations, internal control over financial reporting, however well designed and operated can provide only reasonable, and not absolute, assurance that the controls will prevent or detect misstatements. In addition, the design of any control system is based in part upon certain assumptions about the likelihood of future events. Because of these and other inherent limitations of control systems, there is only the reasonable assurance that our controls will succeed in achieving their goals under all potential future conditions.
+
+Management, under the supervision and with the participation of our Chief Executive Officer and Principal Financial Officer, conducted an evaluation of our internal control over financial reporting as of December 31, 2022, based on the framework in Internal Control-Integrated Framework (2013) issued by the Committee of Sponsoring Organizations of the Treadway Commission (COSO).
+
+As a result of this assessment, management concluded that we did not design and maintain effective controls over the completeness and accuracy of the accounting for, and disclosure of, short-term financings. Specifically, we did not design appropriate controls to identify and reconcile prepaid assets and associated short-term liabilities. This material weakness resulted in material error in connection with our IPFS Corporation Financing Agreement that was corrected through the restatement of the consolidated financial statements as of and for the year ended December 31, 2021, and the correction of the unaudited quarterly financial information for period endings March 31, 2022 and June 30, 2022. Additionally, this material weakness could result in misstatements to the aforementioned account balances or disclosures that would result in a material misstatement to the annual or interim consolidated financial statements that would not be prevented or detected.
+
+Management's Plan for Remediation of the Material Weakness
+
+In response to the material weakness described above, with the oversight of the Audit Committee of our Board of Directors, management is currently evaluating our policies and procedures related to the accounting for short term financings and is working to implement adequate internal controls to ensure that (i) the liability associated with short-term financings are identified and recorded properly, and (ii) the associated asset with said financings are identified and recorded.
+
+The remediation efforts are intended both to address the identified material weakness and to enhance our overall financial control environment. Management is committed to continuous improvement of the Company's internal control over financial reporting and will continue to diligently review the Company's internal control over financial reporting.
+
+56
+
+Table of Contents
+
+Other than the changes described above in "Management's Plan for Remediation of the Material Weakness", there were no changes in our internal control over financial reporting (as such term is defined in the Exchange Act) during the year ended December 31, 2022 that have materially affected, or are reasonably likely to materially affect, our internal control over financial reporting.
+
+This Report does not include an attestation report of our registered public accounting firm regarding internal control over financial reporting. Additionally, management's report was not subject to attestation by our registered public accounting firm pursuant to the permanent exemption from Section 404(b) of the Sarbanes-Oxley Act of 2002 for non-accelerated filers.
