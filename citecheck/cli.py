@@ -186,7 +186,7 @@ def report(
 @app.command()
 def label(index: int = typer.Argument(None, help="Filing number; omit for the next unlabeled one.")):
     """Guided prompts for one filing's ground-truth row."""
-    from .schema import AuditorOpinion, ControlFramework
+    from .schema import AuditorOpinion, ControlFramework, Effectiveness
 
     rows = labels.read_rows()
     if index is None:
@@ -204,14 +204,21 @@ def label(index: int = typer.Argument(None, help="Filing number; omit for the ne
     console.print(f"[bold]{row['company']}[/]")
     console.print(f"[dim]filing {index}/{len(rows)} -- {done} labeled so far[/]\n")
 
-    def ask_bool(field: str, prompt: str) -> str:
+    def ask_effectiveness(prompt: str) -> str:
+        console.print("[dim]EFFECTIVE / NOT_EFFECTIVE / NOT_STATED"
+                      " (use NOT_STATED when the section never concludes)[/]")
         while True:
-            raw = typer.prompt(prompt).strip().lower()
-            if raw in {"t", "true", "y", "yes", "1"}:
-                return "true"
-            if raw in {"f", "false", "n", "no", "0"}:
-                return "false"
-            console.print("[yellow]enter true or false[/]")
+            raw = typer.prompt(prompt).strip().upper()
+            if raw in {"T", "TRUE", "Y", "YES", "1"}:
+                return "EFFECTIVE"
+            if raw in {"F", "FALSE", "N", "NO", "0"}:
+                return "NOT_EFFECTIVE"
+            matches = [o for o in Effectiveness.__members__ if o.startswith(raw)] if raw else []
+            if raw in Effectiveness.__members__:
+                return raw
+            if len(matches) == 1:
+                return matches[0]
+            console.print("[yellow]enter EFFECTIVE, NOT_EFFECTIVE or NOT_STATED[/]")
 
     def ask_choice(prompt: str, enum) -> str:
         options = list(enum.__members__)
@@ -227,9 +234,8 @@ def label(index: int = typer.Argument(None, help="Filing number; omit for the ne
             console.print("[yellow]no unique match; type more characters[/]")
 
     values = {
-        "disclosure_controls_effective": ask_bool(
-            "disclosure_controls_effective", "Disclosure controls effective? (true/false)"),
-        "icfr_effective": ask_bool("icfr_effective", "ICFR effective? (true/false)"),
+        "disclosure_controls_effective": ask_effectiveness("Disclosure controls"),
+        "icfr_effective": ask_effectiveness("ICFR"),
     }
     while True:
         raw = typer.prompt("Material weaknesses OPEN at fiscal year end (count)").strip()

@@ -8,8 +8,8 @@ import pytest
 
 from citecheck.gates import Defect, gate_consistency, run_gates
 from citecheck.schema import (
-    AuditorOpinion, Cited, ControlFramework, Item9AExtraction, MaterialWeakness,
-    QuoteCitation, RemediationStatus, SpanCitation,
+    AuditorOpinion, Cited, ControlFramework, Effectiveness, Item9AExtraction,
+    MaterialWeakness, QuoteCitation, RemediationStatus, SpanCitation,
 )
 from citecheck.sections import find_item_9a
 from citecheck.textify import html_to_text
@@ -28,11 +28,11 @@ def bglc_9a(bglc_html):
 def quote_record(**overrides):
     """A record that is correct for AvidXchange unless overridden."""
     base = dict(
-        disclosure_controls_effective=Cited[bool, QuoteCitation](
-            value=True,
+        disclosure_controls_effective=Cited[Effectiveness, QuoteCitation](
+            value=Effectiveness.EFFECTIVE,
             citation=QuoteCitation(quote="our disclosure controls and procedures were effective")),
-        icfr_effective=Cited[bool, QuoteCitation](
-            value=True,
+        icfr_effective=Cited[Effectiveness, QuoteCitation](
+            value=Effectiveness.EFFECTIVE,
             citation=QuoteCitation(
                 quote="our internal control over financial reporting as of December 31, 2024 was effective")),
         control_framework=Cited[ControlFramework, QuoteCitation](
@@ -56,8 +56,8 @@ def test_correct_record_passes_cleanly(avdx_9a):
 
 
 def test_fabricated_quote_is_type_a(avdx_9a):
-    record = quote_record(icfr_effective=Cited[bool, QuoteCitation](
-        value=True,
+    record = quote_record(icfr_effective=Cited[Effectiveness, QuoteCitation](
+        value=Effectiveness.EFFECTIVE,
         citation=QuoteCitation(quote="management concluded that all controls were flawless")))
     result = run_gates(record, avdx_9a, mode="quote")
     assert [f.defect for f in result.findings] == [Defect.A_UNRESOLVABLE]
@@ -67,10 +67,10 @@ def test_wrong_offsets_with_real_quote_is_type_a(avdx_9a):
     quote = "our internal control over financial reporting as of December 31, 2024 was effective"
     real = avdx_9a.index(quote)
     record = Item9AExtraction[SpanCitation](
-        disclosure_controls_effective=Cited[bool, SpanCitation](
-            value=True, citation=SpanCitation(start=0, end=10, quote=avdx_9a[:10])),
-        icfr_effective=Cited[bool, SpanCitation](
-            value=True,
+        disclosure_controls_effective=Cited[Effectiveness, SpanCitation](
+            value=Effectiveness.EFFECTIVE, citation=SpanCitation(start=0, end=10, quote=avdx_9a[:10])),
+        icfr_effective=Cited[Effectiveness, SpanCitation](
+            value=Effectiveness.EFFECTIVE,
             citation=SpanCitation(start=real + 40, end=real + 40 + len(quote), quote=quote)),
         control_framework=Cited[ControlFramework, SpanCitation](
             value=ControlFramework.NOT_STATED,
@@ -88,8 +88,8 @@ def test_wrong_offsets_with_real_quote_is_type_a(avdx_9a):
 def test_definitional_boilerplate_is_type_b(avdx_9a):
     # Real text, topically perfect, supports nothing: it defines internal
     # control rather than assessing this company's.
-    record = quote_record(icfr_effective=Cited[bool, QuoteCitation](
-        value=True,
+    record = quote_record(icfr_effective=Cited[Effectiveness, QuoteCitation](
+        value=Effectiveness.EFFECTIVE,
         citation=QuoteCitation(
             quote="no evaluation of controls can provide absolute assurance")))
     result = run_gates(record, avdx_9a, mode="quote")
@@ -148,8 +148,8 @@ def test_remediated_weakness_with_effective_icfr_is_consistent():
 
 
 def test_not_effective_without_any_weakness_is_flagged():
-    record = quote_record(icfr_effective=Cited[bool, QuoteCitation](
-        value=False, citation=QuoteCitation(quote="was not effective")))
+    record = quote_record(icfr_effective=Cited[Effectiveness, QuoteCitation](
+        value=Effectiveness.NOT_EFFECTIVE, citation=QuoteCitation(quote="was not effective")))
     findings = gate_consistency(record).findings
     assert any(f.field == "material_weaknesses" for f in findings)
 

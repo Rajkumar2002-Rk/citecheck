@@ -13,7 +13,7 @@ from dataclasses import dataclass
 from pathlib import Path
 
 from .corpus import DATA, MANIFEST, TEXT
-from .schema import AuditorOpinion, ControlFramework, RemediationStatus
+from .schema import AuditorOpinion, ControlFramework, Effectiveness, RemediationStatus
 
 LABELS = DATA / "labels.csv"
 
@@ -66,12 +66,20 @@ def load_labels() -> dict[str, dict]:
     return rows
 
 
-def _norm_bool(raw: str) -> bool | None:
+def _norm_effectiveness(raw: str) -> Effectiveness | None:
+    """Parse a label cell.
+
+    true/false are still accepted because the labels were written before the
+    NOT_STATED option existed, and rewriting them by hand would be worse than
+    reading both spellings.
+    """
     value = (raw or "").strip().lower()
-    if value in {"true", "t", "yes", "y", "1"}:
-        return True
-    if value in {"false", "f", "no", "n", "0"}:
-        return False
+    if value in {"true", "t", "yes", "y", "1", "effective"}:
+        return Effectiveness.EFFECTIVE
+    if value in {"false", "f", "no", "n", "0", "not_effective"}:
+        return Effectiveness.NOT_EFFECTIVE
+    if value in {"not_stated", "not stated", "none", "n/a"}:
+        return Effectiveness.NOT_STATED
     return None
 
 
@@ -97,12 +105,12 @@ def diff(record, label: dict) -> list[Mismatch]:
     out: list[Mismatch] = []
 
     for field in ("disclosure_controls_effective", "icfr_effective"):
-        expected = _norm_bool(label.get(field, ""))
+        expected = _norm_effectiveness(label.get(field, ""))
         if expected is None:
             continue
         actual = getattr(record, field).value
-        if actual != expected:
-            out.append(Mismatch(field, expected, actual))
+        if actual is not expected:
+            out.append(Mismatch(field, expected.value, actual.value))
 
     raw_count = (label.get("material_weakness_count") or "").strip()
     if raw_count.isdigit():

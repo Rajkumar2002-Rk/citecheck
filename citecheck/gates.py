@@ -20,7 +20,7 @@ from dataclasses import dataclass, field as dc_field
 from enum import Enum
 from typing import Iterator
 
-from .schema import AuditorOpinion, ControlFramework, RemediationStatus
+from .schema import AuditorOpinion, ControlFramework, Effectiveness, RemediationStatus
 
 
 class Defect(str, Enum):
@@ -222,6 +222,12 @@ _DCP_SUBJECT = re.compile(
     _phrase("disclosure", "controls", "and", "procedures"), re.IGNORECASE)
 _MW = re.compile(_phrase("material", r"weakness(?:es)?"), re.IGNORECASE)
 
+# Used only to refute a NOT_STATED effectiveness claim.
+_CONCLUSION_STATED = re.compile(
+    r"\bconcluded\b|\bdetermined\b|\bassessed\b[^.]{0,80}\beffective\b",
+    re.IGNORECASE,
+)
+
 # Any mention of the framework anywhere in the section. Used only to refute a
 # NOT_STATED claim, so it is deliberately broad.
 _FRAMEWORK_NAMED = re.compile(
@@ -335,32 +341,33 @@ def gate_support(record, text: str, resolved: dict[str, tuple[int, int]]) -> Gat
             continue
 
         finding = None
-        if path == "icfr_effective":
-            finding = _require(span_text, _ICFR_SUBJECT, path,
-                               "span does not mention internal control over financial "
-                               "reporting", span)
-            if finding is None:
-                wanted = _EFFECTIVE_POS if value else _EFFECTIVE_NEG
-                unwanted = _EFFECTIVE_NEG if value else _EFFECTIVE_POS
+        if path in ("icfr_effective", "disclosure_controls_effective"):
+            icfr = path == "icfr_effective"
+            subject = _ICFR_SUBJECT if icfr else _DCP_SUBJECT
+            noun = ("internal control over financial reporting" if icfr
+                    else "disclosure controls and procedures")
+            finding = _require(span_text, subject, path,
+                               f"span does not mention {noun}", span)
+            if finding is None and value is not Effectiveness.NOT_STATED:
+                positive = value is Effectiveness.EFFECTIVE
+                wanted = _EFFECTIVE_POS if positive else _EFFECTIVE_NEG
+                unwanted = _EFFECTIVE_NEG if positive else _EFFECTIVE_POS
                 if not wanted.search(span_text):
                     finding = Finding("support_check", path, Defect.B_UNSUPPORTED,
-                                      f"span does not state that ICFR was "
-                                      f"{'effective' if value else 'not effective'}", span)
-                elif value and unwanted.search(span_text):
+                                      f"span does not state that {noun} was "
+                                      f"{'effective' if positive else 'not effective'}",
+                                      span)
+                elif positive and unwanted.search(span_text):
                     finding = Finding("support_check", path, Defect.B_UNSUPPORTED,
                                       "span contains a negated effectiveness statement "
-                                      "but the claim is 'effective'", span)
-
-        elif path == "disclosure_controls_effective":
-            finding = _require(span_text, _DCP_SUBJECT, path,
-                               "span does not mention disclosure controls and procedures",
-                               span)
-            if finding is None:
-                wanted = _EFFECTIVE_POS if value else _EFFECTIVE_NEG
-                if not wanted.search(span_text):
+                                      "but the claim is effective", span)
+            elif finding is None:
+                # NOT_STATED is an absence claim, so the whole section refutes it,
+                # not the cited span. Same reasoning as the framework check.
+                if _CONCLUSION_STATED.search(text) and subject.search(text):
                     finding = Finding("support_check", path, Defect.B_UNSUPPORTED,
-                                      f"span does not state that disclosure controls were "
-                                      f"{'effective' if value else 'not effective'}", span)
+                                      f"claims no conclusion is stated, but the section "
+                                      f"contains one about {noun}", span)
 
         elif path == "control_framework":
             marker = _FRAMEWORK_MARKERS.get(value)
@@ -433,11 +440,16 @@ _UNRESOLVED = {RemediationStatus.NOT_STARTED, RemediationStatus.IN_PROGRESS,
 
 def gate_consistency(record) -> GateResult:
     result = GateResult()
-    icfr = record.icfr_effective.value
+    icfr_value = record.icfr_effective.value
+    icfr = icfr_value is Effectiveness.EFFECTIVE
+    icfr_unknown = icfr_value is Effectiveness.NOT_STATED
     weaknesses = record.material_weaknesses
     opinion = record.auditor_opinion.value
 
     unresolved = [w for w in weaknesses if w.remediation_status.value in _UNRESOLVED]
+    if icfr_unknown:
+        # No conclusion to contradict. Saying so is not an inconsistency.
+        return result
     if unresolved and icfr:
         result.findings.append(Finding(
             "consistency", "icfr_effective", Defect.CONSISTENCY,

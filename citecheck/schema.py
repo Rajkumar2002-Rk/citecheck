@@ -55,6 +55,40 @@ class Cited(BaseModel, Generic[T, C]):
     value: T
     citation: C
 
+    @model_validator(mode="before")
+    @classmethod
+    def _accept_legacy_booleans(cls, data):
+        """Load runs recorded before Effectiveness existed.
+
+        Those files store true/false for the two effectiveness fields. Rewriting
+        them would destroy the ability to reproduce the published numbers, so
+        they are translated on read instead. New extractions never take this
+        path, because the model can only return the enum.
+        """
+        if isinstance(data, dict) and isinstance(data.get("value"), bool):
+            field = cls.model_fields["value"].annotation
+            if field is Effectiveness:
+                data = dict(data)
+                data["value"] = (Effectiveness.EFFECTIVE if data["value"]
+                                 else Effectiveness.NOT_EFFECTIVE)
+        return data
+
+
+# NOTE: a class docstring here would be copied into the JSON schema and sent to
+# the model, so the reasoning lives in this comment instead. These two fields
+# used to be typed `bool`, which forced a conclusion out of every filing. Some
+# filings do not contain their own answer: one incorporates management's report
+# by reference to a page outside the section, another defines disclosure
+# controls and never concludes anything about them. A schema with no way to say
+# "this section doesn't say" makes the model assert something the document does
+# not support, which is the exact failure an audit tool should not have.
+#
+# Naming the affected filings here would leak the answers into the prompt.
+class Effectiveness(str, Enum):
+    EFFECTIVE = "EFFECTIVE"
+    NOT_EFFECTIVE = "NOT_EFFECTIVE"
+    NOT_STATED = "NOT_STATED"        # no conclusion in the section provided
+
 
 class ControlFramework(str, Enum):
     COSO_2013 = "COSO_2013"
@@ -91,8 +125,8 @@ class Item9AExtraction(BaseModel, Generic[C]):
 
     model_config = ConfigDict(extra="forbid")
 
-    disclosure_controls_effective: Cited[bool, C]
-    icfr_effective: Cited[bool, C]
+    disclosure_controls_effective: Cited[Effectiveness, C]
+    icfr_effective: Cited[Effectiveness, C]
     material_weaknesses: list[MaterialWeakness[C]] = Field(default_factory=list)
     control_framework: Cited[ControlFramework, C]
     auditor_name: Cited[str, C] | None = None

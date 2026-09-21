@@ -25,12 +25,12 @@ further down.
 
 | | span mode | quote mode |
 |---|---|---|
-| citation integrity | 74.4% | 96.6% |
-| filings with no findings | 12/30 | 25/30 |
+| citation integrity | 74.4% | 97.8% |
+| filings with no findings | 12/30 | 26/30 |
 | quotes not present in the source | 0 | 0 |
 | offset errors | 40 | 0 |
 | factual errors vs. hand labels | 2/30 | 3/30 |
-| cost | $12.58 | $1.19 |
+| cost | $12.58 | $1.21 |
 | wall clock | 70 min | 4 min |
 
 Two citation modes, run as an A/B. In span mode the model reports character
@@ -60,7 +60,7 @@ spans, have the model quote the passage and locate it yourself.
 
 This is the one that matters.
 
-Citation integrity in quote mode is 96.6%. Three filings still came back with a
+Citation integrity in quote mode is 97.8%. Three filings still came back with a
 factual error, and two of those passed every citation check. The citation was
 fine. The claim was wrong.
 
@@ -100,9 +100,9 @@ nothing changed and compared.
 | 3 | 97.3% | 25/30 |
 
 The citation numbers barely move. A tenth of a point across three runs, and the
-same 25 clean filings every time. The 96.6% in the table above comes from the
-committed run, which sits at the bottom of that range, so if you clone this and
-run it yourself you should get the same figure or a slightly better one.
+same 25 clean filings every time. These three ran before the schema change
+described below, so the level sits a little lower than the table at the top. The
+spread is the part that matters, and it's small.
 
 The COSO error repeats too. It showed up on JAAG in all three runs and on
 Netlist in two of three. Counting the original run, that's three out of four for
@@ -167,6 +167,44 @@ isn't a trade worth making. Sonnet made one kind of error Opus didn't, as well:
 it reported Tribal Rides' auditor opinion as NOT_REQUIRED when the filing never
 mentions an auditor at all, which should be ABSENT. That's giving a reason the
 document doesn't give.
+
+## The schema was causing two of the errors
+
+Two of the seven fields started out typed as a plain true or false:
+
+```python
+disclosure_controls_effective: Cited[bool, C]
+icfr_effective: Cited[bool, C]
+```
+
+Two filings don't contain their own answer. One points to a page outside Item 9A
+for management's report. The other explains what disclosure controls are and then
+never concludes anything about them. With only true or false available, the model
+had to pick one, and so did I when I was labeling.
+
+So I added a third value, NOT_STATED, and ran the corpus again. The result was
+better than I expected:
+
+| | true/false | three values |
+|---|---|---|
+| citation integrity | 96.6% | 97.8% |
+| filings with no findings | 25/30 | 26/30 |
+| NOT_STATED used | n/a | 2 times |
+
+It used the new value twice, on exactly the two filings that lack a conclusion,
+and nowhere else in the other 28. No over-use at all.
+
+So those two wrong answers were never the model's fault. The schema was forcing
+them. Give it a way to say the section doesn't say, and it says that instead of
+inventing a conclusion.
+
+That's worth knowing if you're designing the output format for something like
+this. A schema with no way to represent missing evidence doesn't prevent missing
+evidence. It just converts it into a confident wrong answer.
+
+I updated two of my own labels after this run for the same reason. I had recorded
+an inferred true or false on those two filings with a note saying the section
+never states it. The note was doing work the schema should have been doing.
 
 ## The prompt fix that fixed nothing
 
