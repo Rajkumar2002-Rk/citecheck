@@ -27,6 +27,12 @@ jobs:
 
       - name: Gate the defect report
         # Fails the build if citation integrity on the committed run drops below
-        # the threshold -- which happens if a gate regresses, not just if the
+        # the threshold, which happens if a gate regresses and not only if the
         # model does.
         run: uv run python -m citecheck.cli report --mode quote --fail-under 0.90
+
+      - name: Check what the gates still catch
+        # Breaks known-good citations on purpose and measures the catch rate.
+        # Guards against the opposite failure from the line above: a gate that
+        # stops firing looks perfect on a clean run.
+        run: uv run python -m citecheck.cli mutate --fail-under 0.85

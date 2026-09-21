@@ -1,5 +1,11 @@
 """Hand-labeled verdicts on individual citations.
 
+Unused so far. A pass was started and abandoned: judging 190 citations one at a
+time is tedious enough that the answers stop being considered, and a file of
+unconsidered verdicts is worse than no file. Gate recall is measured by mutation
+instead, in `mutate.py`. This is kept for a future sample-based pass, where a
+careful 40 would be worth more than a careless 190.
+
 The claim labels answer "is this field's value right". They say nothing about
 whether the citation attached to it actually supports that value, so they cannot
 measure gate recall: a gate that misses every bad citation still looks fine if

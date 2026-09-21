@@ -268,6 +268,55 @@ can read it. Mine was wrong far more often than the model was. Every scary
 number it gave me turned out to be worth less than the five minutes it took to
 go and check whether the checker was right.
 
+## What do the gates actually catch?
+
+Everything above measures how often the gates fire. It says nothing about what
+they miss, and a gate that quietly stopped working would look perfect on a clean
+run.
+
+Measuring that properly needs a labeled set of bad citations, and the corpus
+barely has any, because the model's citations are mostly fine. I started reading
+all 190 by hand and gave it up: past about eighty the answers stop being
+considered, and a file of unconsidered verdicts is worse than no file.
+
+So I broke the good citations instead. Take every citation that currently passes,
+introduce one specific failure, and see whether the gates notice.
+
+| what I broke | caught | rate |
+|---|---|---|
+| cited text that isn't in the document | 118/118 | 100% |
+| cited the definitional boilerplate | 78/78 | 100% |
+| kept the citation, inverted the claim | 108/108 | 100% |
+| cited another field's passage | 108/118 | 92% |
+| cut the quote before the conclusion | 86/117 | 74% |
+
+Overall 92% of 539 introduced defects. Truncation is the weak spot, and it's
+almost entirely one field:
+
+| field | truncated quotes caught |
+|---|---|
+| control_framework | 93% |
+| icfr_effective | 93% |
+| disclosure_controls_effective | 87% |
+| auditor_opinion | 21% |
+
+That one is my fault and I can trace it. After the false positive rounds I
+widened the auditor opinion patterns to accept the many ways filings phrase an
+exemption or a cross reference. Those alternations match short fragments, so a
+quote cut off before the conclusion still satisfies them. Widening the patterns
+to stop them crying wolf cost most of their ability to catch a truncated quote.
+
+I've left it rather than tightening it back, because the last seven times I
+tightened a pattern it started flagging correct citations, and I'd rather report
+the tradeoff with numbers than keep trading one failure for the other.
+
+This runs in CI and fails the build under 85%.
+
+What it doesn't tell you: these are defects I chose. A failure nobody thought of
+is missing from the gates and from this table alike. Recall against real bad
+citations is still unmeasured, and the honest reason is that I didn't want to
+publish 190 verdicts I hadn't properly made.
+
 ## How it works
 
 1. Pull Item 9A ("Controls and Procedures") from 30 filings through EDGAR.
@@ -299,6 +348,7 @@ uv run python -m citecheck.cli show 1             # read one filing
 uv run python -m citecheck.cli label              # hand-label ground truth
 uv run python -m citecheck.cli extract --mode quote --prompt 1
 uv run python -m citecheck.cli report --fail-under 0.90
+uv run python -m citecheck.cli mutate --fail-under 0.85
 ```
 
 `extract` picks up where it left off and refuses to start twice, after two runs

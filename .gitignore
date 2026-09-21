@@ -16,3 +16,4 @@ data/raw/
 data/pool.json
 data/diagnostic.json
 data/.*.lock
+data/citation_labels.csv

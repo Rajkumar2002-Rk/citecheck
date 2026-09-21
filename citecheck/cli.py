@@ -462,5 +462,80 @@ def label_citations(
                   f"{remaining} left.")
 
 
+@app.command("mutate")
+def mutate_cmd(
+    run: Path = typer.Option(Path("data/quote_pass1.jsonl"), help="Run to mutate."),
+    mode: str = typer.Option("quote", help="Citation mode of that run."),
+    min_recall: float = typer.Option(None, "--fail-under",
+                                     help="Fail if overall catch rate falls below this."),
+):
+    """Break passing citations in known ways and report what the gates catch.
+
+    Only citations that currently pass every gate are mutated, so anything the
+    gates report afterwards is caused by the mutation. The per-mutator rate is
+    recall against that defect class.
+    """
+    from .gates import run_gates
+    from .mutate import MUTATIONS
+    from .report import MODELS
+
+    cls = MODELS[mode]
+    records = [json.loads(line) for line in run.read_text().splitlines() if line.strip()]
+    records = [r for r in records if "extraction" in r]
+
+    tallies = {m.name: [0, 0] for m in MUTATIONS}   # caught, applied
+    misses: dict[str, list[str]] = {m.name: [] for m in MUTATIONS}
+
+    for record in records:
+        text = (corpus.TEXT / record["text_file"]).read_text(encoding="utf-8")
+        flagged = {f["field"] for f in record.get("findings", [])}
+        company = record["company"].split("(")[0].strip()[:24]
+
+        for field in ("disclosure_controls_effective", "icfr_effective",
+                      "control_framework", "auditor_opinion"):
+            if field in flagged:
+                continue   # already failing, so a mutation proves nothing
+            for mutation in MUTATIONS:
+                mutated = mutation.apply(record["extraction"], field, text)
+                if mutated is None:
+                    continue
+                result = run_gates(cls.model_validate(mutated), text, mode=mode)
+                caught = any(f.field == field for f in result.findings)
+                tallies[mutation.name][1] += 1
+                tallies[mutation.name][0] += caught
+                if not caught:
+                    misses[mutation.name].append(f"{company} {field}")
+
+    table = Table("mutation", "what it does", "caught", "rate")
+    total_caught = total_applied = 0
+    for mutation in MUTATIONS:
+        caught, applied = tallies[mutation.name]
+        total_caught += caught; total_applied += applied
+        rate = caught / applied if applied else 0.0
+        colour = "green" if rate > 0.9 else "yellow" if rate > 0.5 else "red"
+        table.add_row(mutation.name, mutation.describes,
+                      f"{caught}/{applied}", f"[{colour}]{rate:.0%}[/]")
+    console.print(table)
+
+    overall = total_caught / total_applied if total_applied else 0.0
+    console.print(f"overall {total_caught}/{total_applied} = {overall:.0%}")
+
+    for mutation in MUTATIONS:
+        missed = misses[mutation.name]
+        if missed:
+            console.print(f"\n[yellow]{mutation.name} missed {len(missed)}:[/]")
+            for item in missed[:8]:
+                console.print(f"  {item}")
+            if len(missed) > 8:
+                console.print(f"  ... and {len(missed) - 8} more")
+
+    if min_recall is None:
+        raise typer.Exit(code=EXIT_OK)
+    if overall < min_recall:
+        console.print(f"[red]FAIL[/] catch rate {overall:.0%} < {min_recall:.0%}")
+        raise typer.Exit(code=EXIT_BELOW_THRESHOLD)
+    raise typer.Exit(code=EXIT_OK)
+
+
 if __name__ == "__main__":
     app()
