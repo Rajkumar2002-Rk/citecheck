@@ -86,6 +86,44 @@ The check reads the whole section instead. If the framework is named anywhere in
 the section, `NOT_STATED` is wrong and the answer should be `OTHER`. Two true
 positives, no false positives.
 
+## Does any of this repeat?
+
+A model doesn't give you the same answer twice, so one run of 30 filings is one
+measurement with no error bar. I ran the whole thing three more times with
+nothing changed and compared.
+
+| run | citation integrity | filings with no findings |
+|---|---|---|
+| 1 | 97.2% | 25/30 |
+| 2 | 97.2% | 25/30 |
+| 3 | 97.3% | 25/30 |
+
+The citation numbers barely move. A tenth of a point across three runs, and the
+same 25 clean filings every time. The 96.6% in the table above comes from the
+committed run, which sits at the bottom of that range, so if you clone this and
+run it yourself you should get the same figure or a slightly better one.
+
+The COSO error repeats too. It showed up on JAAG in all three runs and on
+Netlist in two of three. Counting the original run, that's three out of four for
+each filing. It's a real failure, not a one off.
+
+The weakness counts are a different story:
+
+| filing | open weaknesses, per run |
+|---|---|
+| Trendmaker | 2, 1, 2 |
+| Tribal Rides | 1, 1, 3 |
+
+Same filing, same prompt, three different sessions, and the count moves. Tribal
+Rides came out right once out of three. So the number of filings with a wrong
+claim is anywhere from 2 to 4 of 30 depending on which run you look at, and both
+of those errors are closer to a coin flip than a consistent bug.
+
+That split is worth more than either number on its own. The citation mechanics
+are stable enough to build on. Counting how many weaknesses a filing discloses
+is not, and if you were shipping this you'd want that field decided by a rule or
+a second pass rather than by one call.
+
 ## The prompt fix that fixed nothing
 
 Before the hand labels existed, the apparent failure was that the model counted
@@ -199,8 +237,9 @@ gh workflow run drift.yml -f sample=5
 
 ## What this doesn't prove
 
-- n = 30, one model, one run per filing. Run-to-run variance is real. The same
-  filing returned 6 findings on one pass and 1 on another.
+- n = 30 and one model. I measured run to run variance on the citation numbers
+  and it's small, but I didn't test any model other than Opus 5, so I have no
+  idea whether the COSO failure is specific to it.
 - Public filings are clean HTML. No OCR, no scanned documents, no messy
   enterprise data. That's the harder half of the problem and it isn't here.
 - Item 9A only, not whole filings.
