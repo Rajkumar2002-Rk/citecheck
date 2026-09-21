@@ -414,5 +414,53 @@ def extract_all(
         lock.unlink(missing_ok=True)
 
 
+@app.command("label-citations")
+def label_citations(
+    run: Path = typer.Option(Path("data/quote_pass1.jsonl"), help="Run to label."),
+    start: int = typer.Option(0, help="Skip ahead to this position."),
+):
+    """Judge each citation one at a time: does the quoted text state the claim?
+
+    This is what makes gate recall measurable. The claim labels only say whether
+    a value was right, so a gate that misses every bad citation still scores well
+    if the values happened to be correct.
+    """
+    from .citations import BAD, GOOD, UNSURE, context, iter_citations, load_verdicts, save_verdict
+
+    citations = iter_citations(run)
+    done = load_verdicts()
+    todo = [c for c in citations if c.key not in done][start:]
+    if not todo:
+        console.print(f"[green]all {len(citations)} citations labeled[/]")
+        raise typer.Exit(code=EXIT_OK)
+
+    console.print(f"[dim]{len(done)}/{len(citations)} done, {len(todo)} to go. "
+                  f"g = supports the claim, b = does not, u = unsure, q = stop[/]\n")
+
+    for index, citation in enumerate(todo, 1):
+        console.print(f"[bold cyan]{'-' * 74}[/]")
+        console.print(f"[dim]{len(done) + index}/{len(citations)}[/]  "
+                      f"[bold]{citation.company[:38]}[/]")
+        console.print(f"  field  [bold]{citation.field}[/] = [bold]{citation.value}[/]")
+        console.print(f"  quote  [yellow]{citation.quote[:300]}[/]")
+        console.print(f"[dim]  context ...{' '.join(context(citation).split())[:420]}...[/]")
+
+        while True:
+            answer = typer.prompt("  supports it?").strip().lower()[:1]
+            if answer in {"g", "b", "u", "q"}:
+                break
+            console.print("  [yellow]g, b, u or q[/]")
+        if answer == "q":
+            break
+        note = ""
+        if answer in {"b", "u"}:
+            note = typer.prompt("  why (optional)", default="", show_default=False)
+        save_verdict(citation, {"g": GOOD, "b": BAD, "u": UNSURE}[answer], note)
+
+    remaining = len([c for c in citations if c.key not in load_verdicts()])
+    console.print(f"\n[green]saved[/]. {len(citations) - remaining}/{len(citations)} labeled, "
+                  f"{remaining} left.")
+
+
 if __name__ == "__main__":
     app()
