@@ -321,6 +321,7 @@ def extract_all(
     out: Path = typer.Option(None, help="Output JSONL. Defaults to data/<mode>_v<prompt>.jsonl."),
     repair: int = typer.Option(0, help="Extra attempts on gate failure, feeding the findings back."),
     limit: int = typer.Option(0, help="Stop after N filings. 0 means all."),
+    model: str = typer.Option(None, help="Model id. Defaults to the project default."),
 ):
     """Extract every filing, verify it, and write one JSON record per filing.
 
@@ -331,8 +332,11 @@ def extract_all(
     """
     import anthropic
 
+    from .extract import MODEL
     from .extract import extract as extract_one
     from .gates import run_gates
+
+    model = model or MODEL
 
     if mode not in ("span", "quote"):
         console.print(f"[red]unknown mode {mode!r}[/]")
@@ -371,7 +375,7 @@ def extract_all(
                 feedback, attempt, result = None, None, None
                 for _ in range(repair + 1):
                     attempt = extract_one(client, text, mode=mode, version=prompt,
-                                          repair=feedback)
+                                          repair=feedback, model=model)
                     if attempt.parsed is None:
                         break
                     result = run_gates(attempt.parsed, text, mode=mode)
@@ -380,7 +384,8 @@ def extract_all(
                     feedback = result.repair_prompt()
 
                 record = {"company": filing["company"], "text_file": filing["text_file"],
-                          "length": filing["length"], "error": attempt.error,
+                          "length": filing["length"], "model": model,
+                          "error": attempt.error,
                           "stop": attempt.stop_reason, "in": attempt.input_tokens,
                           "out": attempt.output_tokens, "sec": round(attempt.seconds, 1)}
                 if attempt.error and "credit balance" in attempt.error:

@@ -33,7 +33,8 @@ class Attempt:
 
 
 def extract(client: anthropic.Anthropic, text: str, *, mode: str,
-            repair: str | None = None, version: int = 1) -> Attempt:
+            repair: str | None = None, version: int = 1,
+            model: str = MODEL) -> Attempt:
     """One extraction call. `repair` carries gate feedback on a retry."""
     if mode not in MODES:
         raise ValueError(f"unknown mode {mode!r}; expected one of {sorted(MODES)}")
@@ -48,22 +49,23 @@ def extract(client: anthropic.Anthropic, text: str, *, mode: str,
 
     started = time.monotonic()
     try:
-        return _call(client, prompt, mode, started)
+        return _call(client, prompt, mode, started, model)
     except (httpx2.HTTPError, anthropic.APIConnectionError) as exc:
         # A dropped connection mid-stream is a transport failure, not a model
         # defect. It killed a 29/30 run on the last filing. Retry once, then
         # record it as an error rather than letting it end the pass.
         try:
-            return _call(client, prompt, mode, started)
+            return _call(client, prompt, mode, started, model)
         except (httpx2.HTTPError, anthropic.APIConnectionError) as retry_exc:
             return Attempt(mode, None, f"transport: {type(retry_exc).__name__}: {retry_exc}",
                            0, 0, time.monotonic() - started)
 
 
-def _call(client: anthropic.Anthropic, prompt: str, mode: str, started: float) -> Attempt:
+def _call(client: anthropic.Anthropic, prompt: str, mode: str, started: float,
+          model: str = MODEL) -> Attempt:
     try:
         with client.messages.stream(
-            model=MODEL,
+            model=model,
             max_tokens=MAX_TOKENS,
             system=SYSTEM,
             messages=[{"role": "user", "content": prompt}],

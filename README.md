@@ -19,8 +19,9 @@ of those errors put a false number in this README before I caught it.
 
 30 filings from SEC EDGAR. Claude Opus 5 extracts seven fields from each
 company's Item 9A internal-control disclosure, with a span-level citation on
-every field. Deterministic checks verify the citations. I hand-labeled all 30
-filings myself to check the claims.
+every field. Checks that never call a model verify the citations. I hand-labeled
+all 30 filings myself to check the claims. Numbers below are Opus 5; Sonnet 5 is
+further down.
 
 | | span mode | quote mode |
 |---|---|---|
@@ -123,6 +124,49 @@ That split is worth more than either number on its own. The citation mechanics
 are stable enough to build on. Counting how many weaknesses a filing discloses
 is not, and if you were shipping this you'd want that field decided by a rule or
 a second pass rather than by one call.
+
+## Is it the model, or is it Claude?
+
+The COSO mistake is the one real model error here, and it had only ever been
+seen on one model. So I ran the same 30 filings again on Sonnet 5, same prompt,
+same gates, and checked the two filings where the framework is named without a
+year.
+
+| model | Netlist | JAAG |
+|---|---|---|
+| Opus 5 | NOT_STATED, wrong | OTHER, right |
+| Sonnet 5 | NOT_STATED, wrong | NOT_STATED, wrong |
+
+Sonnet gets both wrong. Opus gets one wrong here, and got JAAG wrong in all
+three of the repeat runs above, so it isn't reliable on that filing either.
+
+Two different models in the same family make the same mistake, which means this
+isn't something a bigger model fixes. A rule is the right answer, which is why
+there's one.
+
+The rest of the comparison was more lopsided than I expected:
+
+| | Opus 5 | Sonnet 5 |
+|---|---|---|
+| citation integrity | 96.6% | 83.5% |
+| filings with no findings | 25/30 | 15/30 |
+| claim errors | 3/30 | 3/30 |
+| output tokens | 21,190 | 32,668 |
+| cost | $1.19 | $0.59 |
+| wall clock | 4 min | 5 min |
+
+Integrity drops 13 points and the number of completely clean filings falls from
+25 to 15, so twice as many filings come back with at least one bad citation.
+
+The saving is smaller than the price list suggests too. Sonnet's rates are 2.5
+times lower but it wrote 54% more output, so the bill only halves. It was also
+slower on the clock for the same reason.
+
+If citations are the product, halving the model cost and doubling the bad ones
+isn't a trade worth making. Sonnet made one kind of error Opus didn't, as well:
+it reported Tribal Rides' auditor opinion as NOT_REQUIRED when the filing never
+mentions an auditor at all, which should be ABSENT. That's giving a reason the
+document doesn't give.
 
 ## The prompt fix that fixed nothing
 
@@ -237,9 +281,9 @@ gh workflow run drift.yml -f sample=5
 
 ## What this doesn't prove
 
-- n = 30 and one model. I measured run to run variance on the citation numbers
-  and it's small, but I didn't test any model other than Opus 5, so I have no
-  idea whether the COSO failure is specific to it.
+- n = 30, two models, and the citation numbers repeat closely across runs. The
+  COSO failure shows up on both models, but two models from one family is not
+  the same as testing models generally.
 - Public filings are clean HTML. No OCR, no scanned documents, no messy
   enterprise data. That's the harder half of the problem and it isn't here.
 - Item 9A only, not whole filings.
