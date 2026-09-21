@@ -4,6 +4,8 @@ The fixtures are real Item 9A sections; the records are constructed by hand so
 each test isolates a single gate decision. Records captured from actual model
 runs are pinned in test_captured_failures.py once a full run exists.
 """
+from pathlib import Path
+
 import pytest
 
 from citecheck.gates import Defect, gate_consistency, run_gates
@@ -172,3 +174,42 @@ def test_not_stated_is_refuted_by_the_whole_section_not_just_the_span(avdx_9a):
     findings = [f for f in result.findings if f.field == "control_framework"]
     assert findings, "NOT_STATED must be refuted by a framework named anywhere in the section"
     assert "OTHER, not NOT_STATED" in findings[0].message
+
+
+CORPUS = Path(__file__).resolve().parents[1] / "data" / "text"
+
+
+def _section(text_file: str) -> str:
+    return (CORPUS / text_file).read_text(encoding="utf-8")
+
+
+@pytest.mark.parametrize("text_file,field,other_field,quote", [
+    # CubeSmart concludes about disclosure controls and sends the ICFR report to
+    # page F-2, so NOT_STATED for ICFR is correct. Quote is the one the model
+    # actually cited.
+    ("0001298675_000129867524000011.txt", "icfr_effective",
+     "disclosure_controls_effective",
+     "Management's report on internal control over financial reporting of the"
+     " Parent Company is set forth"),
+    # MARKY is the mirror image: it concludes about ICFR and defines disclosure
+    # controls without ever concluding about them.
+    ("0001973047_000197304724000012.txt", "disclosure_controls_effective",
+     "icfr_effective",
+     "maintaining a system of disclosure controls and procedures"),
+])
+def test_not_stated_is_not_refuted_by_a_conclusion_about_the_other_field(
+        text_file, field, other_field, quote):
+    # Observed: the absence check asked whether the section held any conclusion
+    # and mentioned the subject anywhere, so a filing that concludes about one
+    # of these two fields was treated as concluding about both. It fired on two
+    # filings where the model had answered correctly.
+    section = _section(text_file)
+    assert quote in section
+    record = quote_record(**{field: Cited[Effectiveness, QuoteCitation](
+        value=Effectiveness.NOT_STATED,
+        citation=QuoteCitation(quote=quote))})
+    result = run_gates(record, section, mode="quote")
+    assert not [f for f in result.findings if f.field == field], (
+        f"NOT_STATED on {field} must not be refuted by a conclusion about "
+        f"{other_field}"
+    )

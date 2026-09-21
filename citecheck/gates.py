@@ -222,11 +222,13 @@ _DCP_SUBJECT = re.compile(
     _phrase("disclosure", "controls", "and", "procedures"), re.IGNORECASE)
 _MW = re.compile(_phrase("material", r"weakness(?:es)?"), re.IGNORECASE)
 
-# Used only to refute a NOT_STATED effectiveness claim.
-_CONCLUSION_STATED = re.compile(
-    r"\bconcluded\b|\bdetermined\b|\bassessed\b[^.]{0,80}\beffective\b",
-    re.IGNORECASE,
-)
+# Splitting on sentence enders is crude, but the alternative was worse. An
+# earlier version asked whether the section contained any conclusion AND
+# mentioned the subject anywhere in it, and fired on two filings where the model
+# was right: one concludes about disclosure controls while saying nothing about
+# ICFR, the other does the reverse. Both words were present, just never in the
+# same statement.
+_SENTENCE = re.compile(r"(?<=[.;:])\s+|\n{2,}")
 
 # Any mention of the framework anywhere in the section. Used only to refute a
 # NOT_STATED claim, so it is deliberately broad.
@@ -362,12 +364,20 @@ def gate_support(record, text: str, resolved: dict[str, tuple[int, int]]) -> Gat
                                       "span contains a negated effectiveness statement "
                                       "but the claim is effective", span)
             elif finding is None:
-                # NOT_STATED is an absence claim, so the whole section refutes it,
-                # not the cited span. Same reasoning as the framework check.
-                if _CONCLUSION_STATED.search(text) and subject.search(text):
-                    finding = Finding("support_check", path, Defect.B_UNSUPPORTED,
-                                      f"claims no conclusion is stated, but the section "
-                                      f"contains one about {noun}", span)
+                # NOT_STATED is an absence claim, so the whole section refutes it
+                # rather than the cited span. But the conclusion has to be about
+                # THIS subject, so both have to land in the same sentence.
+                stated = next(
+                    (part for part in _SENTENCE.split(text)
+                     if subject.search(part)
+                     and (_EFFECTIVE_POS.search(part) or _EFFECTIVE_NEG.search(part))),
+                    None,
+                )
+                if stated:
+                    finding = Finding(
+                        "support_check", path, Defect.B_UNSUPPORTED,
+                        f"claims no conclusion is stated about {noun}, but the section "
+                        f"contains one: {' '.join(stated.split())[:90]!r}", span)
 
         elif path == "control_framework":
             marker = _FRAMEWORK_MARKERS.get(value)
