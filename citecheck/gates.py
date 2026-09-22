@@ -20,6 +20,7 @@ from dataclasses import dataclass, field as dc_field
 from enum import Enum
 from typing import Iterator
 
+from .resolve import resolve
 from .schema import AuditorOpinion, ControlFramework, Effectiveness, RemediationStatus
 
 
@@ -84,7 +85,8 @@ def _normalize(text: str) -> str:
 # Gate 1 - span resolution
 # --------------------------------------------------------------------------
 
-def gate_span_resolution(record, text: str, *, mode: str) -> GateResult:
+def gate_span_resolution(record, text: str, *, mode: str,
+                         tolerant: bool = False) -> GateResult:
     """Do the offsets exist, and does the quote match the text at them exactly?
 
     In quote mode there are no offsets to check; the harness resolves them by
@@ -123,21 +125,23 @@ def gate_span_resolution(record, text: str, *, mode: str) -> GateResult:
             continue
 
         # quote mode
-        found = text.find(quote)
-        if found >= 0:
-            result.resolved[path] = (found, found + len(quote))
-            continue
-        # Tolerate whitespace differences before calling it fabricated.
-        loose = _normalize(quote)
-        haystack = _normalize(text)
-        if loose and loose in haystack:
-            result.findings.append(Finding(
-                "span_resolution", path, Defect.UNVERIFIABLE,
-                "quote matches only after whitespace normalization; offsets not exact"))
-        else:
+        hit = resolve(quote, text)
+        if hit is None:
             result.findings.append(Finding(
                 "span_resolution", path, Defect.A_UNRESOLVABLE,
                 f"quote does not appear in the source: {quote[:80]!r}"))
+            continue
+        result.resolved[path] = (hit.start, hit.end)
+        if hit.exact or tolerant:
+            continue
+        # On a substrate we control, an inexact match means the model altered
+        # the text it claimed to be quoting. On OCR output it means the page
+        # re-wrapped, which is not the model's doing, so `tolerant` turns this
+        # off rather than drowning a scanned run in findings.
+        result.findings.append(Finding(
+            "span_resolution", path, Defect.UNVERIFIABLE,
+            "quote matches only after normalizing layout; not an exact quotation",
+            (hit.start, hit.end)))
     return result
 
 
@@ -490,9 +494,13 @@ def gate_consistency(record) -> GateResult:
 # Runner
 # --------------------------------------------------------------------------
 
-def run_gates(record, text: str, *, mode: str) -> GateResult:
-    """All gates, in order. Support runs only on spans that resolved."""
-    spans = gate_span_resolution(record, text, mode=mode)
+def run_gates(record, text: str, *, mode: str, tolerant: bool = False) -> GateResult:
+    """All gates, in order. Support runs only on spans that resolved.
+
+    `tolerant` is for text that has been through OCR, where layout differences
+    are the page's fault rather than the model's.
+    """
+    spans = gate_span_resolution(record, text, mode=mode, tolerant=tolerant)
     support = gate_support(record, text, spans.resolved)
     consistency = gate_consistency(record)
     return GateResult(

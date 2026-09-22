@@ -7,7 +7,9 @@ requires-python = ">=3.12"
 dependencies = [
     "anthropic>=1.6.0",
     "httpx>=0.28.1",
+    "pillow>=12.3.0",
     "pydantic>=2.13.5",
+    "pytesseract>=0.3.13",
     "pytest>=9.1.1",
     "rich>=15.0.0",
     "selectolax>=0.4.12",

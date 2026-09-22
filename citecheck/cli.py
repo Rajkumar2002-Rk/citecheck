@@ -329,6 +329,7 @@ def extract_all(
     limit: int = typer.Option(0, help="Stop after N filings. 0 means all."),
     model: str = typer.Option(None, help="Model id. Defaults to the project default."),
     only: str = typer.Option(None, help="Comma-separated company substrings to include."),
+    text_dir: Path = typer.Option(None, help="Read sections from here instead of data/text."),
 ):
     """Extract every filing, verify it, and write one JSON record per filing.
 
@@ -384,7 +385,8 @@ def extract_all(
             for index, filing in enumerate(filings, 1):
                 if filing["text_file"] in done:
                     continue
-                text = (corpus.TEXT / filing["text_file"]).read_text(encoding="utf-8")
+                source = text_dir or corpus.TEXT
+                text = (source / filing["text_file"]).read_text(encoding="utf-8")
 
                 feedback, attempt, result = None, None, None
                 for _ in range(repair + 1):
