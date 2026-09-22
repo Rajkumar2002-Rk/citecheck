@@ -382,6 +382,89 @@ retry to break: two resolved, none introduced.
 Which lands on the same recommendation as the rest of the project. Use quote
 mode, find the text yourself, and the repair loop becomes free upside.
 
+## What happens when the document is a scan
+
+Everything above runs on clean HTML from EDGAR, which is the easy half. Real
+audit evidence is scanned paper and photographed pages, and I kept listing that
+as out of scope. So I had a go at it.
+
+Going to find real scanned filings would have meant losing the ground truth, and
+the labels took long enough the first time. Instead the same 30 filings get
+rendered to page images, roughed up the way a scanner does, and read back with
+tesseract. Two versions of the same document, and the labels still apply.
+
+The first number was not what I expected.
+
+| | exact match | with the resolver |
+|---|---|---|
+| clean render, no damage | 0/73 | 72/73 |
+| office scan | 0/73 | 73/73 |
+| bad fax | 0/73 | 71/73 |
+
+Not one citation of 73 survives `str.find` after a scan, including a render with
+no degradation applied at all. It isn't OCR accuracy, which came back at 99% or
+better. Laying text on a page re-wraps the lines, so the words are identical and
+the whitespace isn't, and exact matching is byte exact.
+
+Span resolution is the one gate that never fails on clean input. On a scan it
+goes to zero.
+
+The fix is a resolver that matches on a normalized copy and maps the position
+back to the original text. Collapsing whitespace is the easy part. The mapping
+is what needs care, because a citation that resolves to the wrong offsets is
+worse than one that fails to resolve, since it looks checkable and isn't. It
+also has to fold hyphens, because a line breaking at "Internal Control-
+Integrated Framework" comes back as two words with a space in the middle.
+
+That recovers 97 to 100% of what exact matching loses.
+
+### The model reads a scan about as well as the file
+
+| | clean text | OCR text |
+|---|---|---|
+| citation integrity | 98.9% | 95.5% |
+| filings with no findings | 28/30 | 23/30 |
+| wrong claims vs my labels | 3/30 | 2/30 |
+
+Claim accuracy didn't move. Two versus three, and the repeat runs showed the
+clean-text number wanders between two and four anyway. Whatever OCR costs you
+here, it isn't comprehension.
+
+### The failure that only exists on a scan
+
+One citation traced back to the scan but not to the real document.
+
+```
+clean document:  pursuant to rules of the Securities and Exchange Commission
+OCR output:      pursuant to tules of the Securities and Exchange Commission
+```
+
+One letter. The model then quoted the scan faithfully, "tules" and all. So the
+citation resolves exactly against the document the system was handed, every gate
+passes, the claim it supports is correct, and the sentence it quotes was never in
+the filing.
+
+Nothing in this project can catch that. The only copy the system ever sees is the
+scan, and against the scan the citation is perfect. You would need the original
+to know, and in a real workflow the scan is the original.
+
+On clean HTML, a citation that resolves is a citation that's true. On a scan
+those two come apart, and that is the part I would worry about if I were putting
+this anywhere near real evidence.
+
+Once, in 30 filings, so I'm not claiming a rate. The point is that the failure
+exists at all and that no amount of verification against the provided document
+will surface it.
+
+### What this doesn't cover
+
+The degradation is synthetic. Real scans have coffee stains, staples, skew from a
+hand-fed page, and text that was never digital to begin with. My renderer also
+wraps lines at hyphens, which creates some of the breakage I then measured, so
+part of that 0/73 is my typesetting rather than a scanner. The direction is
+right; treat the exact numbers as a floor on the difficulty rather than a
+measurement of it.
+
 ## How it works
 
 1. Pull Item 9A ("Controls and Procedures") from 30 filings through EDGAR.
@@ -438,8 +521,9 @@ gh workflow run drift.yml -f sample=5
 - n = 30, two models, and the citation numbers repeat closely across runs. The
   COSO failure shows up on both models, but two models from one family is not
   the same as testing models generally.
-- Public filings are clean HTML. No OCR, no scanned documents, no messy
-  enterprise data. That's the harder half of the problem and it isn't here.
+- Public filings are clean HTML. The scan section above degrades them
+  synthetically rather than using real scanned evidence, and real scans are
+  worse than anything I generated. Messy enterprise data is still untouched.
 - Item 9A only, not whole filings.
 - I'm not an auditor. I learned the domain from primary sources over a weekend.
   The rules I applied are in [`docs/audit-notes.md`](docs/audit-notes.md),
