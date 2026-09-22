@@ -18,3 +18,4 @@ data/diagnostic.json
 data/.*.lock
 data/citation_labels.csv
 data/text_ocr/
+context.md
