@@ -317,6 +317,71 @@ is missing from the gates and from this table alike. Recall against real bad
 citations is still unmeasured, and the honest reason is that I didn't want to
 publish 190 verdicts I hadn't properly made.
 
+## Does telling the model what's wrong help?
+
+Every gate finding is a sentence explaining the problem, so the obvious next
+question is whether handing that back to the model fixes anything. The answer
+turned out to be yes, with one catch.
+
+I ran it on the seven filings that had a support check finding, two in quote
+mode and five in span, with up to two retries each. That cost $4.33.
+
+| | quote | span |
+|---|---|---|
+| findings resolved | 2 | 13 |
+| findings introduced | 0 | 1 |
+| claim errors fixed | 1 | 3 |
+| claim errors broken | 0 | 0 |
+
+Four real errors corrected and nothing broken, which is better than I expected.
+
+The number I actually cared about was whether it was fixing things or just
+satisfying the checker. A model told "your span doesn't mention internal control
+over financial reporting" can clear that by pointing somewhere that does, without
+the new passage supporting the claim any better.
+
+It didn't do that. Every time it revised an answer, it revised toward the value I
+had labeled by hand:
+
+| filing | before | after | my label |
+|---|---|---|---|
+| CubeSmart | EFFECTIVE | NOT_STATED | NOT_STATED |
+| Netlist | NOT_STATED | OTHER | OTHER |
+| MARKY | NOT_EFFECTIVE | NOT_STATED | NOT_STATED |
+| JAAG | NOT_STATED | OTHER | OTHER |
+
+Three of those are the undated COSO error and the two filings that don't state
+their own answer, so gate feedback fixed exactly the failures this project spent
+the most time identifying.
+
+The other repair shape was widening a quote rather than changing an answer. Jones
+Soda's citation started at "As a result of this assessment, management concluded
+that we did not design and maintain effective controls", which never says
+"internal control over financial reporting", so the subject check fired. The
+repair extended the quote backwards to include the preceding sentence, which
+does. Subject and conclusion, both present.
+
+### The catch
+
+One filing came back worse. Jones Soda picked up a new finding on a field that
+had been fine:
+
+```
+quote is real but offsets are wrong: cited (6142,6510), actual (6265,6633)
+```
+
+A repair in span mode regenerates the whole record, so every offset gets
+recomputed, and one that had been right came back 123 characters off. The retry
+fixed the problem it was asked about and broke something else on the way past.
+
+That's the same split as everywhere else here. Repair helps with the failures
+that are about judgment and is a liability on the ones that are about arithmetic.
+In quote mode, where the harness resolves offsets itself, there is nothing for a
+retry to break: two resolved, none introduced.
+
+Which lands on the same recommendation as the rest of the project. Use quote
+mode, find the text yourself, and the repair loop becomes free upside.
+
 ## How it works
 
 1. Pull Item 9A ("Controls and Procedures") from 30 filings through EDGAR.
@@ -353,7 +418,8 @@ uv run python -m citecheck.cli mutate --fail-under 0.85
 
 `extract` picks up where it left off and refuses to start twice, after two runs
 once wrote over each other without any error. `--repair N` feeds gate findings
-back to the model and retries. Exit codes: `0` pass, `1` below threshold, `2`
+back to the model and retries, `--only` limits a run to named filings, and
+`--model` swaps the model. Exit codes: `0` pass, `1` below threshold, `2`
 usage error, `3` no data.
 
 CI runs on every push and needs no secrets. The corpus text, both extraction

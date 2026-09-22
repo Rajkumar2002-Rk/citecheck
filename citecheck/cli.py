@@ -328,6 +328,7 @@ def extract_all(
     repair: int = typer.Option(0, help="Extra attempts on gate failure, feeding the findings back."),
     limit: int = typer.Option(0, help="Stop after N filings. 0 means all."),
     model: str = typer.Option(None, help="Model id. Defaults to the project default."),
+    only: str = typer.Option(None, help="Comma-separated company substrings to include."),
 ):
     """Extract every filing, verify it, and write one JSON record per filing.
 
@@ -368,6 +369,13 @@ def extract_all(
             console.print(f"[dim]resuming: {len(done)} filings already done[/]")
 
         filings = json.loads((corpus.DATA / "manifest.json").read_text())["filings"]
+        if only:
+            wanted = [w.strip().lower() for w in only.split(",") if w.strip()]
+            filings = [f for f in filings
+                       if any(w in f["company"].lower() for w in wanted)]
+            if not filings:
+                console.print(f"[red]no filings match {only!r}[/]")
+                raise typer.Exit(code=EXIT_USAGE)
         if limit:
             filings = filings[:limit]
         client = anthropic.Anthropic()
