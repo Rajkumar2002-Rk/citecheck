@@ -51,7 +51,7 @@ def summarise(path, label):
             "min": secs / 60, "out_tokens": int(tout)}
 
 
-rows = [summarise("data/quote_pass1.jsonl", "Opus 5"),
+rows = [summarise("data/quote_bool_schema.jsonl", "Opus 5"),
         summarise("data/sonnet_run1.jsonl", "Sonnet 5")]
 
 print(f"{'':12} {'model':18} {'integrity':>10} {'clean':>7} {'wrong':>7} "

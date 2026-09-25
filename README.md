@@ -150,10 +150,14 @@ The rest of the comparison was more lopsided than I expected:
 |---|---|---|
 | citation integrity | 96.6% | 83.5% |
 | filings with no findings | 25/30 | 15/30 |
-| claim errors | 3/30 | 3/30 |
+| claim errors | 5/30 | 5/30 |
 | output tokens | 21,190 | 32,668 |
 | cost | $1.19 | $0.59 |
 | wall clock | 4 min | 5 min |
+
+Both claim-error counts include CubeSmart and MARKY. This comparison ran with
+true or false answers only, before the schema change below, so neither model had
+a way to get those two right. Take them out and it's 3 each.
 
 Integrity drops 13 points and the number of completely clean filings falls from
 25 to 15, so twice as many filings come back with at least one bad citation.
