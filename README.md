@@ -10,7 +10,7 @@ check.
 It never happened. Not once, across 354 cited fields in 30 real SEC filings.
 
 What I found instead was that my own checking code, the part that never calls a
-model and feels like the trustworthy half, was wrong eight separate times. One
+model and feels like the trustworthy half, was wrong nine separate times. One
 of those errors put a false number in this README before I caught it.
 
 ---
@@ -25,8 +25,8 @@ further down.
 
 | | span mode | quote mode |
 |---|---|---|
-| citation integrity | 74.4% | 97.8% |
-| filings with no findings | 12/30 | 26/30 |
+| citation integrity | 74.4% | 98.9% |
+| filings with no findings | 12/30 | 28/30 |
 | quotes not present in the source | 0 | 0 |
 | offset errors | 40 | 0 |
 | factual errors vs. hand labels | 2/30 | 3/30 |
@@ -60,7 +60,7 @@ spans, have the model quote the passage and locate it yourself.
 
 This is the one that matters.
 
-Citation integrity in quote mode is 97.8%. Three filings still came back with a
+Citation integrity in quote mode is 98.9%. Three filings still came back with a
 factual error, and two of those passed every citation check. The citation was
 fine. The claim was wrong.
 
@@ -206,6 +206,10 @@ I updated two of my own labels after this run for the same reason. I had recorde
 an inferred true or false on those two filings with a note saying the section
 never states it. The note was doing work the schema should have been doing.
 
+Those two filings still showed a finding each after this run. That was my
+checker, not the model, and it's the ninth bug below. With it fixed the numbers
+are 98.9% and 28/30, which is what the table at the top shows.
+
 ## The prompt fix that fixed nothing
 
 Before the hand labels existed, the apparent failure was that the model counted
@@ -232,7 +236,7 @@ worth writing down.
 
 The deterministic layer was buggier than the model it was checking.
 
-- 8 defects in the verification layer, each found and fixed
+- 9 defects in the verification layer, each found and fixed
 - 4 harness failures that would have been scored as model defects
 - 0 citations fabricated by the model
 
@@ -262,6 +266,14 @@ against it.
 I built a whole gate on top of that misreading before checking it. The gate
 scored zero true positives and one false positive. I reverted it rather than
 tuning it, because tuning it would have been fitting noise.
+
+The ninth turned up after the schema change. The check behind NOT_STATED asked
+two questions of the whole section: does it state a conclusion anywhere, and
+does it mention the subject anywhere. CubeSmart concludes about disclosure
+controls and sends its ICFR report to another page. MARKY does the reverse. Both
+words were in both sections, just never in the same sentence, so the check
+flagged two answers the model had right. Now the subject and the conclusion have
+to land in the same sentence. Quote-mode integrity went from 97.8% to 98.9%.
 
 Checking code feels more trustworthy than a model, because you wrote it and you
 can read it. Mine was wrong far more often than the model was. Every scary
@@ -531,5 +543,5 @@ gh workflow run drift.yml -f sample=5
   instead of taking it on trust.
 - Two filings don't contain their own answer. CubeSmart points to page F-2 for
   management's ICFR report, and MARKY never states a disclosure-controls
-  conclusion at all. Nothing can get those right from the section it was handed.
-  I labeled them by inference and said so.
+  conclusion at all. I labeled them by inference at first. Both are NOT_STATED
+  now, which is all the section supports.
