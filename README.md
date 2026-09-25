@@ -29,13 +29,17 @@ further down.
 | filings with no findings | 12/30 | 28/30 |
 | quotes not present in the source | 0 | 0 |
 | offset errors | 40 | 0 |
-| factual errors vs. hand labels | 2/30 | 3/30 |
+| factual errors vs. hand labels | 4/30 | 3/30 |
 | cost | $12.58 | $1.21 |
 | wall clock | 70 min | 4 min |
 
 Two citation modes, run as an A/B. In span mode the model reports character
 offsets itself. In quote mode it returns the quoted text and the harness finds
 it with `str.find`.
+
+The span run is older and could only answer true or false for the two
+effectiveness fields. Two of its four factual errors are CubeSmart and MARKY,
+which it had no way to get right. The schema section further down covers why.
 
 Three things fall out of that table.
 
